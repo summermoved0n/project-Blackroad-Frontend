@@ -1,11 +1,12 @@
-// Button.tsx
+"use client";
+
 import { button } from "@/lib/ui/button";
 import { cn } from "@/lib/ui/cn";
 
 type ButtonProps = {
   children: React.ReactNode;
-  variant?: "primary" | "secondary";
-  size?: "sm" | "md" | "lg";
+  variant?: "primary";
+  size?: "sm" | "md" | "lg" | "xl";
   className?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 

@@ -1,16 +1,16 @@
 import { cva } from "class-variance-authority";
 
-export const button = cva("px-4 py-2 rounded font-small transition", {
+export const button = cva("h-[50px] text-base text-white transition", {
   variants: {
     variant: {
       primary:
-        "bg-transparent border-2 border-solid border-orange-500 text-white hover:bg-orange-500",
-      secondary: "bg-gray-200 hover:bg-gray-300",
+        "bg-transparent border-1 border-solid border-orange-500 hover:bg-orange-500",
     },
     size: {
-      sm: "text-sm px-2 py-1",
-      md: "text-base px-4 py-2",
-      lg: "text-lg px-6 py-3",
+      sm: "w-[200px]",
+      md: "w-[466px]",
+      lg: "w-[514px]",
+      xl: "w-[614px]",
     },
   },
   defaultVariants: {

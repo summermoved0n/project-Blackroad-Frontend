@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import Image from "next/image";
 import { Button } from "./components/Button";
 
@@ -15,8 +16,15 @@ export default function Home() {
         />
       </div>
 
-      <Button variant="primary" size="sm">
-        Hello world
+      <Button
+        variant="primary"
+        size="xl"
+        className="mt-4"
+        onClick={() => {
+          console.log("Button clicked");
+        }}
+      >
+        Button
       </Button>
     </main>
   );
