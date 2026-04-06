@@ -1,4 +1,4 @@
-export default function FaceBookIcon() {
+export const FaceBookIcon = () => {
   return (
     <svg
       width="24"

@@ -1,4 +1,4 @@
-export default function FilterIcon() {
+export const FilterIcon = () => {
   return (
     <svg
       width="24"

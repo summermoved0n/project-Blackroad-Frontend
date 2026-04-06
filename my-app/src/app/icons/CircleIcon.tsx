@@ -1,4 +1,4 @@
-export default function CircleIcon() {
+export const CircleIcon = () => {
   return (
     <svg
       width="34"

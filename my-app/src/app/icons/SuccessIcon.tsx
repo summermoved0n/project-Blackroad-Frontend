@@ -1,4 +1,4 @@
-export default function SuccessIcon() {
+export const SuccessIcon = () => {
   return (
     <svg
       width="16"

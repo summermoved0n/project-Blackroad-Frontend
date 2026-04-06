@@ -1,4 +1,4 @@
-export default function ErrorIcon() {
+export const ErrorIcon = () => {
   return (
     <svg
       width="16"

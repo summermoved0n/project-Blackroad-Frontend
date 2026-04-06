@@ -1,4 +1,4 @@
-export default function ShowPasswordIcon() {
+export const ShowPasswordIcon = () => {
   return (
     <svg
       width="20"

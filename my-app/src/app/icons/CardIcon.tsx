@@ -1,4 +1,4 @@
-export default function CardIcon() {
+export const CardIcon = () => {
   return (
     <svg
       width="20"

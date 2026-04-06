@@ -1,4 +1,4 @@
-export default function MinusIcon() {
+export const MinusIcon = () => {
   return (
     <svg
       width="16"

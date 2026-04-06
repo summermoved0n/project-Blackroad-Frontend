@@ -1,4 +1,4 @@
-export default function SearchIcon() {
+export const SearchIcon = () => {
   return (
     <svg
       width="24"

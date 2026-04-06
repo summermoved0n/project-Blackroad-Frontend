@@ -1,4 +1,4 @@
-export default function WiFiIcon() {
+export const WiFiIcon = () => {
   return (
     <svg
       width="24"

@@ -1,4 +1,4 @@
-export default function ChevronLeftIcon() {
+export const ChevronLeftIcon = () => {
   return (
     <svg
       width="8"

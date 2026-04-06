@@ -1,4 +1,4 @@
-export default function AnimalsIcon() {
+export const AnimalsIcon = () => {
   return (
     <svg
       width="50"

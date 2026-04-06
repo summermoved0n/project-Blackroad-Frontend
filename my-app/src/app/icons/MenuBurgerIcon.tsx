@@ -1,4 +1,4 @@
-export default function MenuBurgerIcon() {
+export const MenuBurgerIcon = () => {
   return (
     <svg
       width="40"

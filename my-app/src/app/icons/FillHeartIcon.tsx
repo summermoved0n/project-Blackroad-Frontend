@@ -1,4 +1,4 @@
-export default function FillHeartIcon() {
+export const FillHeartIcon = () => {
   return (
     <svg
       width="20"

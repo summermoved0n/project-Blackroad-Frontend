@@ -1,4 +1,4 @@
-export default function FillStarIcon() {
+export const FillStarIcon = () => {
   return (
     <svg
       width="24"

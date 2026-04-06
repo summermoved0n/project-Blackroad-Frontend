@@ -1,4 +1,4 @@
-export default function HouseIcon() {
+export const HouseIcon = () => {
   return (
     <svg
       width="50"

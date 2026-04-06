@@ -1,4 +1,4 @@
-export default function NatureIcon() {
+export const NatureIcon = () => {
   return (
     <svg
       width="44"

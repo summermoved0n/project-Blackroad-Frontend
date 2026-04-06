@@ -1,4 +1,4 @@
-export default function PlusIcon() {
+export const PlusIcon = () => {
   return (
     <svg
       width="16"

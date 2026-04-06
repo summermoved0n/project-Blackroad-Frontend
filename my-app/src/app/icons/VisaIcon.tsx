@@ -1,4 +1,4 @@
-export default function VisaIcon() {
+export const VisaIcon = () => {
   return (
     <svg
       width="76"

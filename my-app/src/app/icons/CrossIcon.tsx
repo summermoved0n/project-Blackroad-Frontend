@@ -1,4 +1,4 @@
-export default function CrossIcon() {
+export const CrossIcon = () => {
   return (
     <svg
       width="16"

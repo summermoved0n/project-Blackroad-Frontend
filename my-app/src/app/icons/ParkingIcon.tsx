@@ -1,4 +1,4 @@
-export default function ParkingIcon() {
+export const ParkingIcon = () => {
   return (
     <svg
       width="22"

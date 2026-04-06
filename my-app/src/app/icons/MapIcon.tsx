@@ -1,4 +1,4 @@
-export default function MapIcon() {
+export const MapIcon = () => {
   return (
     <svg
       width="20"

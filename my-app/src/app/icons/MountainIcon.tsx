@@ -1,4 +1,4 @@
-export default function MountainIcon() {
+export const MountainIcon = () => {
   return (
     <svg
       width="49"

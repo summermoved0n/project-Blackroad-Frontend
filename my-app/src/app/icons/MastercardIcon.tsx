@@ -1,4 +1,4 @@
-export default function MastercardIcon() {
+export const MastercardIcon = () => {
   return (
     <svg
       width="70"

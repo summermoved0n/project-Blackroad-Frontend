@@ -1,4 +1,4 @@
-export default function EmptyStarIcon() {
+export const EmptyStarIcon = () => {
   return (
     <svg
       width="24"
