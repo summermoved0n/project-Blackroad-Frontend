@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import { Button } from "./components/Button";
 
 export default function Home() {
   return (
@@ -14,6 +14,10 @@ export default function Home() {
           sizes="100vw"
         />
       </div>
+
+      <Button variant="primary" size="sm">
+        Hello world
+      </Button>
     </main>
   );
 }
