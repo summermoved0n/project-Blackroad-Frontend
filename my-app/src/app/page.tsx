@@ -13,6 +13,7 @@ export default function Home() {
           fill
           className="object-cover object-center"
           sizes="100vw"
+          loading="eager"
         />
       </div>
 
