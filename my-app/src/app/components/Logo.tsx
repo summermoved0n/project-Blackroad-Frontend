@@ -1,5 +1,18 @@
+"use client";
+
+import { Italiana } from "next/font/google";
+import Link from "next/link";
+
+const italiana = Italiana({
+  variable: "--font-italiana",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export default function Logo() {
   return (
-    <p className="text-5xl font-[Italianata_Sans] font-normal">BLACKROAD</p>
+    <Link href="/" className={`text-5xl ${italiana.className}`}>
+      BLACKROAD
+    </Link>
   );
 }
