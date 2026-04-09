@@ -1,0 +1,33 @@
+import { cva } from "class-variance-authority";
+
+export const text = cva("", {
+  variants: {
+    color: {
+      white: "text-white",
+      white_20: "text-white/20",
+      white_60: "text-white/60",
+      white_80: "text-white/80",
+      black: "text-black",
+      black_50: "text-black/50",
+      black_60: "text-black/60",
+
+      orange: "text-[rgba(234,156,63,0.6)]",
+    },
+
+    size: {
+      xs: "text-sm font-light",
+      sm: "text-base font-normal",
+      md: "text-2xl font-normal",
+      lg: "text-5xl font-light",
+      xl: "text-6xl font-normal",
+    },
+
+    spacing: {
+      sm: "tracking-[0.03em]",
+    },
+  },
+  defaultVariants: {
+    color: "white",
+    size: "md",
+  },
+});
