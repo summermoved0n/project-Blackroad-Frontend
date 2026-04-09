@@ -4,12 +4,12 @@ export const text = cva("", {
   variants: {
     color: {
       white: "text-white",
-      white_20: "text-white/20",
-      white_60: "text-white/60",
-      white_80: "text-white/80",
+      white20: "text-white/20",
+      white60: "text-white/60",
+      white80: "text-white/80",
       black: "text-black",
-      black_50: "text-black/50",
-      black_60: "text-black/60",
+      black50: "text-black/50",
+      black60: "text-black/60",
 
       orange: "text-[rgba(234,156,63,0.6)]",
     },
