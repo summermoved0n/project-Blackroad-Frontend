@@ -13,11 +13,13 @@ type TextProps = {
     | "black60"
     | "orange";
   size: "xs" | "sm" | "md" | "lg" | "xl";
+  as?: "p" | "span" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   spacing?: "sm";
   className?: string;
 } & React.HTMLAttributes<HTMLParagraphElement>;
 
 export function Text({
+  as,
   color,
   size,
   spacing,
@@ -25,9 +27,14 @@ export function Text({
   children,
   ...props
 }: TextProps) {
+  const Component = as || "p";
+
   return (
-    <p className={cn(text({ color, size, spacing }), className)} {...props}>
+    <Component
+      className={cn(text({ color, size, spacing }), className)}
+      {...props}
+    >
       {children}
-    </p>
+    </Component>
   );
 }

@@ -1,10 +1,11 @@
 import { cva } from "class-variance-authority";
 
-export const button = cva("h-[50px] text-base text-white transition", {
+export const button = cva("text-base transition", {
   variants: {
     variant: {
       primary:
-        "bg-transparent border-1 border-solid border-orange-500 hover:bg-orange-500",
+        "h-[50px] text-white bg-transparent border-1 border-solid border-orange-500 hover:bg-orange-500",
+      secondary: "h-[40px] text-black",
     },
     size: {
       sm: "w-[200px]",
@@ -12,9 +13,5 @@ export const button = cva("h-[50px] text-base text-white transition", {
       lg: "w-[514px]",
       xl: "w-[614px]",
     },
-  },
-  defaultVariants: {
-    variant: "primary",
-    size: "md",
   },
 });

@@ -14,6 +14,7 @@ export default function HomeHero() {
       />
 
       <Text
+        as="h1"
         color="white"
         size="lg"
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center"
