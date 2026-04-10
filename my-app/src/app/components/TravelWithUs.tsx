@@ -99,7 +99,7 @@ export default function TravelWithUs() {
         </div>
       </div>
 
-      <div className="flex gap-[30px]">
+      <div className="flex gap-7.5">
         {toursToShow.map(({ id, title, description, image, price }) => (
           <TourCard
             key={id}
