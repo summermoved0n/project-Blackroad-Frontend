@@ -5,7 +5,7 @@ import { cn } from "@/lib/ui/cn";
 
 type ButtonProps = {
   children: React.ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "tertiary";
   size?: "sm" | "md" | "lg" | "xl";
   className?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
