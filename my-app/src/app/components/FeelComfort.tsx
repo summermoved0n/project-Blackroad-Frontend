@@ -1,4 +1,3 @@
-import React from "react";
 import { Text } from "./Text";
 import Image from "next/image";
 import ButtonWithArrow from "./ButtonWithArrow";
