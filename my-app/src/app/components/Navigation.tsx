@@ -44,21 +44,34 @@ export default function Navigation() {
   const [isHover, setIsHover] = useState(false);
 
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid md:grid-cols-2">
       <ul className="flex flex-col gap-10">
         {navList.map(({ name, path, img }) => (
           <li key={path}>
             <Link href={path}>
               <Text
                 as="h2"
-                color="white20"
+                color="white"
                 size="lg"
+                spacing="sm"
                 onMouseEnter={() => {
                   setActiveImage(img);
                   setIsHover(true);
                 }}
                 onMouseLeave={() => setIsHover(false)}
-                className="relative hover:after:content-[''] hover:after:absolute hover:after:-left-35 hover:after:top-1/2 hover:after:w-25 hover:after:h-[2px] hover:after:bg-white hover:after:transition-all uppercase hover:text-white transition hover:transform hover:translate-x-20"
+                className={clsx(
+                  "uppercase",
+                  // base
+                  "md:relative md:transition md:text-white/20",
+                  // hover text
+                  "md:hover:text-white md:hover:translate-x-20",
+                  // after element
+                  "md:hover:after:content-['']",
+                  "md:hover:after:absolute",
+                  "md:hover:after:-left-35 md:hover:after:top-1/2",
+                  "md:hover:after:w-25 md:hover:after:h-0.5",
+                  "md:hover:after:bg-white md:hover:after:transition-all",
+                )}
               >
                 {name}
               </Text>
@@ -68,7 +81,10 @@ export default function Navigation() {
       </ul>
 
       <div
-        className={clsx("relative w-full h-[550px]", !isHover && "bg-black/80")}
+        className={clsx(
+          "relative hidden md:block w-full h-[550px]",
+          !isHover && "bg-black/80",
+        )}
       >
         <Image
           src={activeImage}

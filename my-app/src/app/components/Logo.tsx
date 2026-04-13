@@ -11,7 +11,7 @@ const italiana = Italiana({
 
 export default function Logo() {
   return (
-    <Link href="/" className={`text-5xl ${italiana.className}`}>
+    <Link href="/" className={`text-2xl sm:text-5xl ${italiana.className}`}>
       BLACKROAD
     </Link>
   );

@@ -21,10 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.className} h-full antialiased`}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body className="min-h-full flex flex-col">
         <Header />
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

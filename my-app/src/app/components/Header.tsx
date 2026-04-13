@@ -7,6 +7,7 @@ import { MenuBurgerIcon } from "@/lib/icons/MenuBurgerIcon";
 import clsx from "clsx";
 import { CrossIcon } from "@/lib/icons/CrossIcon";
 import Navigation from "./Navigation";
+import { Text } from "./Text";
 
 export default function Header() {
   const [openDropMenu, setOpenDropMenu] = useState(false);
@@ -26,7 +27,7 @@ export default function Header() {
   return (
     <header
       className={clsx(
-        "text-white border-b border-white/10 h-20 w-full pl-17.5 transition flex items-center justify-between absolute top-0 left-0 z-10",
+        "text-white border-b border-white/10 h-17 sm:h-20 w-full px-4 md:pl-17.5 md:px-0 transition flex items-center justify-between absolute top-0 left-0 z-10",
         openDropMenu
           ? "bg-[#171717] transition backdrop-blur-none"
           : " backdrop-blur-md",
@@ -34,7 +35,7 @@ export default function Header() {
     >
       <div
         className={clsx(
-          "absolute bg-[#1e1e1f] top-20 left-0 w-full h-screen transform -translate-x-full transition z-10 px-20 pt-15",
+          "absolute bg-[#1e1e1f] top-17 sm:top-20 left-0 w-full h-screen transform -translate-x-full transition z-10 px-4 md:px-20 pt-7.5 md:pt-15",
           openDropMenu && "translate-x-0 transition",
         )}
       >
@@ -51,14 +52,16 @@ export default function Header() {
           </button>
         )}
       </div>
-      <p>Fr/En</p>
+      <p className="hidden md:block">Fr / En</p>
       <Logo />
       <p>Log in</p>
       <Link
         href="/build-tour"
-        className="border-l border-white/10 h-20 px-17.5 flex items-center tracking-wider"
+        className="hidden md:flex border-l border-white/10 h-20 px-17.5  items-center hover:bg-[#ea9c3f] transition"
       >
-        Build trip
+        <Text as="p" color="white" size="sm" className="">
+          Build trip
+        </Text>
       </Link>
     </header>
   );

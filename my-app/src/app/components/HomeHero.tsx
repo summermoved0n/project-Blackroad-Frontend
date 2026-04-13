@@ -1,14 +1,15 @@
 import Image from "next/image";
 import { Text } from "./Text";
+import { Button } from "./Button";
 
 export default function HomeHero() {
   return (
-    <div className="relative w-full h-175 md:h-225">
+    <div className="relative w-full h-180 md:h-225 flex flex-col justify-center items-center gap-7.5">
       <Image
         src="/images/Home_hero.jpg"
         alt="Hero"
         fill
-        className="object-cover object-center"
+        className="object-cover object-center -z-10"
         sizes="100vw"
         loading="eager"
       />
@@ -17,10 +18,15 @@ export default function HomeHero() {
         as="h1"
         color="white"
         size="lg"
-        className="absolute w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center"
+        spacing="sm"
+        className="w-full text-center"
       >
         INSPIRATION IN EVERY JOURNEY
       </Text>
+
+      <Button variant="primary" className="w-[343px] md:hidden">
+        Book
+      </Button>
     </div>
   );
 }

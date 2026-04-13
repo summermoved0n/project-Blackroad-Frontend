@@ -18,12 +18,12 @@ export const text = cva("", {
       xs: "text-sm font-light",
       sm: "text-base font-normal",
       md: "text-2xl font-normal",
-      lg: "text-5xl font-light",
+      lg: "text-[28px] sm:text-5xl font-light",
       xl: "text-6xl font-normal",
     },
 
     spacing: {
-      sm: "tracking-[0.03em]",
+      sm: "tracking-[0.03em] sm:tracking-normal",
     },
   },
   defaultVariants: {
