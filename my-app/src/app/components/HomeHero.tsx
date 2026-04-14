@@ -1,8 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import { Text } from "./Text";
 import { Button } from "./Button";
+import { useState } from "react";
+import DatePicker from "./DatePicker";
 
 export default function HomeHero() {
+  const [isOpenPicker, setIsOpenPicker] = useState(false);
+
   return (
     <div className="relative w-full h-180 md:h-225 flex flex-col justify-center items-center gap-7.5">
       <Image
@@ -24,9 +30,17 @@ export default function HomeHero() {
         INSPIRATION IN EVERY JOURNEY
       </Text>
 
-      <Button variant="primary" className="w-[343px] md:hidden">
-        Book
-      </Button>
+      {!isOpenPicker ? (
+        <Button
+          variant="primary"
+          className="w-[343px] md:hidden"
+          onClick={() => setIsOpenPicker(true)}
+        >
+          Book
+        </Button>
+      ) : (
+        <DatePicker setIsOpenPicker={setIsOpenPicker} />
+      )}
     </div>
   );
 }
