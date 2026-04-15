@@ -8,7 +8,7 @@ const dateOfCustomers = [
 
 export default function WhyChooseUs() {
   return (
-    <div className="px-20 pt-25 pb-37.5 bg-[#1e1e1f]">
+    <section className="px-4 py-12.5 md:px-20 md:pt-25 md:pb-37.5 bg-[#1e1e1f]">
       <Text
         as="h2"
         color="white"
@@ -19,7 +19,7 @@ export default function WhyChooseUs() {
         WHY CHOOSE US?
       </Text>
 
-      <div className="flex justify-between">
+      <div className="flex flex-col lg:flex-row items-center md:justify-between gap-5 lg:gap-0">
         {dateOfCustomers.map(({ id, numbers, text }) => (
           <div
             key={id}
@@ -34,6 +34,6 @@ export default function WhyChooseUs() {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

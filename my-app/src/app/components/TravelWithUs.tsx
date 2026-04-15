@@ -42,7 +42,7 @@ const tours = [
   },
 ];
 
-const toursPerPage = 2;
+const toursPerPage = 1;
 
 export default function TravelWithUs() {
   const [page, setPage] = useState(1);
@@ -74,13 +74,19 @@ export default function TravelWithUs() {
   };
 
   return (
-    <div className="mx-20 pt-25 pb-37.5 flex justify-between">
+    <section className="relative mx-4 pt-12.5 pb-30 md:mx-20 md:pt-25  md:pt-0 md:pb-0 md:pb-37.5 md:flex md:justify-between">
       <div className="flex flex-col justify-end gap-15">
-        <Text as="h2" color="black" size="lg" spacing="sm" className="w-60">
+        <Text
+          as="h2"
+          color="black"
+          size="lg"
+          spacing="sm"
+          className="mb-7.5 md:mb-0 md:w-60 text-center"
+        >
           TRAVEL WITH US
         </Text>
 
-        <div className="flex gap-10 ">
+        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 md:relative md:bottom-0 md:left-0 md:transform-none md:translate-0 flex justify-center md:justify-start gap-10">
           <Button
             variant="tertiary"
             className="flex items-center justify-center"
@@ -99,7 +105,7 @@ export default function TravelWithUs() {
         </div>
       </div>
 
-      <div className="flex gap-7.5">
+      <div className="flex md:gap-7.5">
         {toursToShow.map(({ id, title, description, image, price }) => (
           <TourCard
             key={id}
@@ -111,6 +117,6 @@ export default function TravelWithUs() {
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 }

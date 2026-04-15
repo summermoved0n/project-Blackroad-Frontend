@@ -17,9 +17,9 @@ export const text = cva("", {
     size: {
       xs: "text-sm font-light",
       sm: "text-base font-normal",
-      md: "text-2xl font-normal",
+      md: "text-base sm:text-2xl font-normal",
       lg: "text-[28px] sm:text-5xl font-light",
-      xl: "text-6xl font-normal",
+      xl: "text-[28px] sm:text-6xl font-normal",
     },
 
     spacing: {

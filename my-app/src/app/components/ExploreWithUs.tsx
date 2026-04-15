@@ -3,12 +3,11 @@ import ButtonWithArrow from "./ButtonWithArrow";
 
 export default function ExploreWithUs() {
   return (
-    <div className="py-37.5 mx-20">
+    <section className="py-12.5 mx-4 md:py-37.5 md:mx-20">
       <Text className="mb-25" as="h2" color="black" size="xl" spacing="sm">
-        EXPLORE
-        <br /> CANADA WITH US
+        EXPLORE CANADA WITH US
       </Text>
-      <div className="flex justify-end gap-7.5">
+      <div className="flex flex-col md:flex-row justify-end gap-7.5">
         <div className="flex flex-col items-start justify-start gap-15">
           <Text className="w-102" color="black60" size="sm">
             We have been organizing tours in Ukraine since 2007 and have not
@@ -23,13 +22,13 @@ export default function ExploreWithUs() {
           </ButtonWithArrow>
         </div>
 
-        <Text className="w-102" color="black60" size="sm">
+        <Text className="w-102" as="p" color="black60" size="sm">
           Experienced travelers, guides, specialists who worked in tourist
           complexes in different parts of the world work on creating tours.
           There are no random people. Only those who are passionate about
           tourism and want to develop it here in Ukraine.
         </Text>
       </div>
-    </div>
+    </section>
   );
 }

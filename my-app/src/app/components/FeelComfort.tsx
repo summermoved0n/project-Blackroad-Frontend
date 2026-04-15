@@ -6,7 +6,7 @@ import { ArrowRightIcon } from "@/lib/icons/ArrowRightIcon";
 
 export default function FeelComfort() {
   return (
-    <section className="pt-25 pb-37.5 mx-20">
+    <section className="mx-4 pt-12.5 pb-35 md:pt-25 md:pb-37.5 md:mx-20">
       <Text
         as="h2"
         color="black"
@@ -17,8 +17,8 @@ export default function FeelComfort() {
         FEEL COMFORT
       </Text>
 
-      <div className="relative grid grid-cols-[2fr_1fr] gap-7.5 items-center">
-        <div className="relative h-175">
+      <div className="relative grid md:grid-cols-[2fr_1fr] md:gap-7.5 items-center">
+        <div className="relative h-58 w-full md:h-175">
           <Image
             src="/images/Feel_comfort_left.jpg"
             alt="Hotel Room"
@@ -28,8 +28,8 @@ export default function FeelComfort() {
             loading="eager"
           />
 
-          <div className="absolute bg-white w-88 h-63 z-10 top-1/2 right-0 transform -translate-y-1/2 translate-x-1/2 pt-20 pl-20">
-            <Text as="h3" color="black" size="md" className="mb-[30px]">
+          <div className="absolute bg-white w-75 md:w-88 md:h-63 z-10 bottom-0 left-1/2 md:top-1/2 md:right-0 transform -translate-x-1/2 translate-y-1/2 md:-translate-y-1/2 md:translate-x-1/2 py-7.5 px-15 md:px-0 md:py-0 md:pt-20 md:pl-20">
+            <Text as="h3" color="black" size="md" className="mb-7.5">
               Hotels
             </Text>
             <ButtonWithArrow path="/tours">See all</ButtonWithArrow>
@@ -37,13 +37,13 @@ export default function FeelComfort() {
 
           <Button
             variant="tertiary"
-            className="absolute flex items-center justify-center top-1/2 right-0 transform -translate-y-1/2 translate-x-[268px] z-10"
+            className="hidden md:flex absolute items-center justify-center top-1/2 right-0 transform -translate-y-1/2 translate-x-67 z-10"
           >
             <ArrowRightIcon />
           </Button>
         </div>
 
-        <div className="relative h-137.5">
+        <div className="relative h-137.5 hidden md:block">
           <Image
             src="/images/Feel_comfort_right.jpg"
             alt="Hotel Room"
