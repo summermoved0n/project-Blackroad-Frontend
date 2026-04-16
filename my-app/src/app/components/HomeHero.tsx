@@ -10,7 +10,7 @@ export default function HomeHero() {
   const [isOpenPicker, setIsOpenPicker] = useState(false);
 
   return (
-    <div className="relative w-full h-180 md:h-225 flex flex-col justify-center items-center gap-7.5">
+    <div className="relative w-full px-4 lg:px-35 h-180 md:h-225 flex flex-col justify-center items-center gap-7.5">
       <Image
         src="/images/Home_hero.jpg"
         alt="Hero"
@@ -33,7 +33,8 @@ export default function HomeHero() {
       {!isOpenPicker ? (
         <Button
           variant="primary"
-          className="w-[343px] md:hidden"
+          size="sm"
+          className="md:hidden"
           onClick={() => setIsOpenPicker(true)}
         >
           Book
@@ -41,6 +42,8 @@ export default function HomeHero() {
       ) : (
         <DatePicker setIsOpenPicker={setIsOpenPicker} />
       )}
+
+      <div className="hidden md:block md:h-17.5 md:w-full xl:px-35 md:backdrop-blur-sm mt-30"></div>
     </div>
   );
 }

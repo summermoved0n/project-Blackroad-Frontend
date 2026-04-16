@@ -9,7 +9,7 @@ export const button = cva("text-base transition", {
       tertiary: "h-[74px] w-[74px] rounded-full bg-[#ea9c3f]",
     },
     size: {
-      sm: "w-[200px]",
+      sm: "w-full md:w-[200px]",
       md: "w-[466px]",
       lg: "w-[514px]",
       xl: "w-[614px]",

@@ -7,7 +7,7 @@ export const MastercardIcon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_577_1112)">
+      <g clipPath="url(#clip0_577_1112)">
         <path
           d="M2.91666 0H67.0834C68.6876 0 70 1.32353 70 2.94117V47.0588C70 48.6766 68.6876 50 67.0834 50H2.91666C1.3125 50 0 48.6766 0 47.0588V2.94117C0 1.32353 1.3125 0 2.91666 0Z"
           fill="white"

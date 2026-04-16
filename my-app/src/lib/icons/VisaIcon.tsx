@@ -34,10 +34,10 @@ export const VisaIcon = () => {
           y2="25.1449"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#363C61" />
-          <stop offset="1" stop-color="#4D64A9" />
+          <stop stopColor="#363C61" />
+          <stop offset="1" stopColor="#4D64A9" />
         </linearGradient>
       </defs>
     </svg>
   );
-}
+};

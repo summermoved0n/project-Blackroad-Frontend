@@ -1,17 +1,36 @@
+"use client";
+
 import { PlusIcon } from "@/lib/icons/PlusIcon";
 import { Text } from "./Text";
+import { useState } from "react";
+import { MinusIcon } from "@/lib/icons/MinusIcon";
 
-type FAQItemProps = { question: string };
+type FAQItemProps = { question: string; description: string };
 
-export default function FAQItem({ question }: FAQItemProps) {
+export default function FAQItem({ question, description }: FAQItemProps) {
+  const [showText, setShowText] = useState(false);
+
   return (
-    <li className="py-10 border-t border-t-black/10 text-base flex justify-between items-center gap-2">
-      <Text as="h3" color="black" size="sm">
-        {question}
-      </Text>
-      <button type="button" className="">
-        <PlusIcon />
-      </button>
+    <li className="py-10 border-t border-t-black/10">
+      <div className="flex justify-between items-center gap-2 w-full">
+        <Text as="h3" color="black" size="sm">
+          {question}
+        </Text>
+
+        <button
+          type="button"
+          className=""
+          onClick={() => setShowText(!showText)}
+        >
+          {!showText ? <PlusIcon /> : <MinusIcon />}
+        </button>
+      </div>
+
+      {showText && (
+        <Text as="p" color="black60" size="sm" className="w-[80%] mt-7.5">
+          {description}
+        </Text>
+      )}
     </li>
   );
 }

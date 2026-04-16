@@ -21,7 +21,7 @@ export default function KeepInTouch() {
           placeholder="Enter email"
           className="h-12.5 md:w-181.5 px-5 py-3.5 border border-white/10 text-white focus:border-[#ea9c3f] focus:outline-none"
         />
-        <Button variant="primary" size="sm" className="w-full md:w-40">
+        <Button variant="primary" size="sm">
           Subscribe
         </Button>
       </div>

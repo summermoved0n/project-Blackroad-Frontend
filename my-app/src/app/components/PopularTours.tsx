@@ -6,6 +6,7 @@ import { Text } from "./Text";
 import { ArrowRightIcon } from "@/lib/icons/ArrowRightIcon";
 import TourCard from "./TourCard";
 import { useState } from "react";
+import { useToursPerPage } from "@/lib/hooks/useToursPerPage";
 
 const tours = [
   {
@@ -42,9 +43,9 @@ const tours = [
   },
 ];
 
-const toursPerPage = 1;
-
 export default function PopularTours() {
+  const toursPerPage = useToursPerPage();
+
   const [page, setPage] = useState(1);
   const [toursToShow, setToursToShow] = useState(tours.slice(0, toursPerPage));
 
@@ -105,7 +106,7 @@ export default function PopularTours() {
         </div>
       </div>
 
-      <div className="flex md:gap-7.5">
+      <div className="flex justify-center md:gap-7.5">
         {toursToShow.map(({ id, title, description, image, price }) => (
           <TourCard
             key={id}

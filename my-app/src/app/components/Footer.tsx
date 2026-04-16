@@ -5,6 +5,8 @@ import { InstagramIcon } from "@/lib/icons/InstagramIcon";
 import { FaceBookIcon } from "@/lib/icons/FaceBookIcon";
 import Link from "next/link";
 import { Button } from "./Button";
+import { MastercardIcon } from "@/lib/icons/MastercardIcon";
+import { VisaIcon } from "@/lib/icons/VisaIcon";
 
 const navigationLinks = [
   { name: "Tours", path: "tours" },
@@ -16,7 +18,7 @@ const navigationLinks = [
 
 export default function Footer() {
   return (
-    <footer className="pt-17.5 pb-25 bg-[#1e1e1f] px-20 grid grid-cols-[1fr_1fr_2fr] ">
+    <footer className="py-12.5 px-4 md:py-0 md:pt-17.5 md:pb-25 md:px-20 bg-[#1e1e1f] grid md:grid-cols-[1fr_1fr_2fr] gap-7.5 md:gap-0">
       <div className="text-white flex flex-col gap-7.5">
         <Logo />
         <Text as="p" color="white60" size="sm">
@@ -52,7 +54,7 @@ export default function Footer() {
           Subscribe to our news:
         </Text>
 
-        <div className="flex gap-2.5 mb-12.5">
+        <div className="flex flex-col md:flex-row gap-5 md:gap-2.5 mb-12.5">
           <input
             type="email"
             placeholder="Enter email"
@@ -64,7 +66,10 @@ export default function Footer() {
           </Button>
         </div>
 
-        <div></div>
+        <div className="flex gap-5">
+          <MastercardIcon />
+          <VisaIcon />
+        </div>
       </div>
     </footer>
   );
