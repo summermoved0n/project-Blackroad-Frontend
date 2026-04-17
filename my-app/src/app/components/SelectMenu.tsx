@@ -39,11 +39,11 @@ export default function SelectMenu() {
       </button>
 
       {showList && (
-        <ul className="absolute top-full bg-white w-full group">
+        <ul className="absolute top-full w-full">
           {citiesList.map((item) => (
             <li
               key={item}
-              className="cursor-pointer py-2.5 px-5 group-hover:bg-white/30"
+              className="cursor-pointer py-2.5 px-5 bg-white hover:bg-gray-300"
               onClick={() => {
                 setShowList(false);
                 setCityName(item);

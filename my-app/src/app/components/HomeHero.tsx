@@ -6,6 +6,8 @@ import { Button } from "./Button";
 import { useState } from "react";
 import DatePicker from "./DatePicker";
 import SelectMenu from "./SelectMenu";
+import SelectDate from "./SelectDate";
+import SelectPeopleAndRooms from "./SelectPeopleAndRooms";
 
 export default function HomeHero() {
   const [isOpenPicker, setIsOpenPicker] = useState(false);
@@ -44,11 +46,14 @@ export default function HomeHero() {
         <DatePicker setIsOpenPicker={setIsOpenPicker} />
       )}
 
-      <div className="hidden md:pl-10 md:block md:h-17.5 md:w-full xl:px-35 md:backdrop-blur-sm md:mt-30 rounded-xl md:grid md:grid-cols-[1fr_1fr_1fr_180px]">
+      <div className="hidden md:pl-10 md:block md:h-17.5 md:w-full xl:pl-15 md:backdrop-blur-sm md:mt-30 rounded-xl md:grid md:grid-cols-[1fr_1fr_1fr_180px] md:gap-12.5">
         <SelectMenu />
-        <div></div>
-        <div></div>
-        <button className="border-l-1 border-white/10" type="button">
+        <SelectDate />
+        <SelectPeopleAndRooms />
+        <button
+          className="flex items-center justify-center border-l-1 border-white/10"
+          type="button"
+        >
           <Text as="p" color="white" size="md">
             Search
           </Text>
