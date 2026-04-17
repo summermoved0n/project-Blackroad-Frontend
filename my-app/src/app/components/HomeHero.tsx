@@ -5,6 +5,7 @@ import { Text } from "./Text";
 import { Button } from "./Button";
 import { useState } from "react";
 import DatePicker from "./DatePicker";
+import SelectMenu from "./SelectMenu";
 
 export default function HomeHero() {
   const [isOpenPicker, setIsOpenPicker] = useState(false);
@@ -43,7 +44,16 @@ export default function HomeHero() {
         <DatePicker setIsOpenPicker={setIsOpenPicker} />
       )}
 
-      <div className="hidden md:block md:h-17.5 md:w-full xl:px-35 md:backdrop-blur-sm mt-30"></div>
+      <div className="hidden md:pl-10 md:block md:h-17.5 md:w-full xl:px-35 md:backdrop-blur-sm md:mt-30 rounded-xl md:grid md:grid-cols-[1fr_1fr_1fr_180px]">
+        <SelectMenu />
+        <div></div>
+        <div></div>
+        <button className="border-l-1 border-white/10" type="button">
+          <Text as="p" color="white" size="md">
+            Search
+          </Text>
+        </button>
+      </div>
     </div>
   );
 }
