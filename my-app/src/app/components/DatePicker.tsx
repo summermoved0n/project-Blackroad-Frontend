@@ -1,15 +1,18 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 
 type DatePickerProps = {
-  setIsOpenPicker: (arg: boolean) => void;
+  setPickDate: Dispatch<SetStateAction<DateRange | undefined>>;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
 };
 
-export default function DatePicker({ setIsOpenPicker }: DatePickerProps) {
+export default function DatePicker({
+  setPickDate,
+  setShowModal,
+}: DatePickerProps) {
   const [selected, setSelected] = useState<DateRange | undefined>();
 
   return (
@@ -35,28 +38,14 @@ export default function DatePicker({ setIsOpenPicker }: DatePickerProps) {
       footer={
         <div className="flex justify-between">
           <button
-            className="hover:text-orange-300"
             type="button"
             onClick={() => {
-              console.log(selected);
-              setIsOpenPicker(false);
+              setPickDate(selected);
+              setShowModal(false);
             }}
           >
-            Close
+            Select
           </button>
-          {/* 
-          <p>
-            {selected
-              ? `Selected: ${selected.from.toLocaleDateString()} - ${selected.to.toLocaleDateString()}`
-              : "Pick a day."}
-          </p> */}
-
-          <Link
-            className="bg-white h-7.5 w-15 flex items-center justify-center group"
-            href="/tours"
-          >
-            <span className="group-hover:text-orange-300">Book</span>
-          </Link>
         </div>
       }
     />
