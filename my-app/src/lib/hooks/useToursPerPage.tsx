@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 export function useToursPerPage() {
@@ -6,17 +8,16 @@ export function useToursPerPage() {
   useEffect(() => {
     function handleResize() {
       const width = window.innerWidth;
-
       if (width < 640) {
-        setToursPerPage(1); // mobile
+        setToursPerPage(1);
       } else if (width < 1024) {
-        setToursPerPage(2); // tablet
+        setToursPerPage(2);
       } else {
-        setToursPerPage(3); // desktop
+        setToursPerPage(3);
       }
     }
 
-    handleResize(); // init
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);

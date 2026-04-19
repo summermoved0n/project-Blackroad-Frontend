@@ -28,19 +28,18 @@ export default function FeelComfort() {
             loading="eager"
           />
 
-          <div className="absolute bg-white w-75 md:w-88 md:h-63 z-10 bottom-0 left-1/2 md:top-1/2 md:right-0 transform -translate-x-1/2 translate-y-1/2 md:-translate-y-1/2 md:translate-x-1/2 py-7.5 px-15 md:px-0 md:py-0 md:pt-20 md:pl-20">
+          <div className="absolute bg-white w-75 md:w-88 md:h-63 z-10 bottom-0 right-1/2 md:bottom-1/2 md:right-0 transform translate-x-1/2 translate-y-1/2 py-7.5 px-15 md:px-0 md:py-0 md:pt-20 md:pl-20">
             <Text as="h3" color="black" size="md" className="mb-7.5">
               Hotels
             </Text>
             <ButtonWithArrow path="/tours">See all</ButtonWithArrow>
+            <Button
+              variant="tertiary"
+              className="hidden md:flex absolute items-center justify-center top-1/2 right-0 transform -translate-y-1/2 translate-x-1/2 z-10"
+            >
+              <ArrowRightIcon />
+            </Button>
           </div>
-
-          <Button
-            variant="tertiary"
-            className="hidden md:flex absolute items-center justify-center top-1/2 right-0 transform -translate-y-1/2 translate-x-67 z-10"
-          >
-            <ArrowRightIcon />
-          </Button>
         </div>
 
         <div className="relative h-137.5 hidden md:block">

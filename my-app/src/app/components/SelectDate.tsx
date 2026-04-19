@@ -14,7 +14,6 @@ export default function SelectDate({
   setShowModal,
   pickDate,
 }: SelectDateProps) {
-  console.log(pickDate);
   return (
     <div className="relative flex">
       <button

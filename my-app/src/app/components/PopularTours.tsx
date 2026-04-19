@@ -43,9 +43,9 @@ const tours = [
   },
 ];
 
-export default function PopularTours() {
-  const toursPerPage = useToursPerPage();
+const toursPerPage = 2;
 
+export default function PopularTours() {
   const [page, setPage] = useState(1);
   const [toursToShow, setToursToShow] = useState(tours.slice(0, toursPerPage));
 
@@ -82,7 +82,7 @@ export default function PopularTours() {
           color="black"
           size="lg"
           spacing="sm"
-          className="mb-7.5 md:mb-0 md:w-60 text-center"
+          className="mb-7.5 md:mb-0 md:w-60 text-center md:text-left"
         >
           POPULAR TOURS
         </Text>

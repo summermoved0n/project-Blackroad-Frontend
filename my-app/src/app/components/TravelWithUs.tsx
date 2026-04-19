@@ -6,7 +6,6 @@ import { Text } from "./Text";
 import { ArrowRightIcon } from "@/lib/icons/ArrowRightIcon";
 import TourCard from "./TourCard";
 import { useState } from "react";
-import { useToursPerPage } from "@/lib/hooks/useToursPerPage";
 
 const tours = [
   {
@@ -43,11 +42,11 @@ const tours = [
   },
 ];
 
-export default function TravelWithUs() {
-  const toursPerPage = useToursPerPage();
-  console.log(toursPerPage);
+const toursPerPage = 2;
 
+export default function TravelWithUs() {
   const [page, setPage] = useState(1);
+
   const [toursToShow, setToursToShow] = useState(tours.slice(0, toursPerPage));
 
   const onClickPrevPage = () => {
@@ -83,7 +82,7 @@ export default function TravelWithUs() {
           color="black"
           size="lg"
           spacing="sm"
-          className="mb-7.5 md:mb-0 md:w-60 text-center"
+          className="mb-7.5 md:mb-0 md:w-60 text-center md:text-left"
         >
           TRAVEL WITH US
         </Text>
