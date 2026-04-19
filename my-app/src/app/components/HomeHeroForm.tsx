@@ -1,7 +1,7 @@
 "use client";
 
 import { Text } from "./Text";
-import SelectMenu from "./SelectMenu";
+import SelectCity from "./SelectCity";
 import SelectDate from "./SelectDate";
 import SelectPeopleAndRooms from "./SelectPeopleAndRooms";
 import Modal from "./Modal";
@@ -15,7 +15,7 @@ export default function HomeHeroForm() {
 
   return (
     <div className="hidden md:pl-10 md:block md:h-17.5 md:w-full xl:pl-15 md:backdrop-blur-sm md:mt-30 rounded-xl md:grid md:grid-cols-[1fr_1fr_1fr_180px] md:gap-12.5">
-      <SelectMenu />
+      <SelectCity />
       <SelectDate setShowModal={setShowModal} pickDate={pickDate} />
       <SelectPeopleAndRooms />
       <button
@@ -27,11 +27,9 @@ export default function HomeHeroForm() {
         </Text>
       </button>
 
-      {showModal && (
-        <Modal openModal={showModal} setOpenModal={setShowModal}>
-          <DatePicker setPickDate={setPickDate} setShowModal={setShowModal} />
-        </Modal>
-      )}
+      <Modal openModal={showModal} setOpenModal={setShowModal}>
+        <DatePicker setPickDate={setPickDate} setShowModal={setShowModal} />
+      </Modal>
     </div>
   );
 }

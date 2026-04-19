@@ -39,7 +39,7 @@ export default function Header() {
           openDropMenu && "translate-x-0 transition",
         )}
       >
-        <Navigation />
+        <Navigation setOpenDropMenu={setOpenDropMenu} />
       </div>
       <div className="w-10">
         {!openDropMenu ? (

@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Text } from "./Text";
 import { ArrowDownIcon } from "@/lib/icons/ArrowDownIcon";
+import { useClickOutside } from "@/lib/hooks/useClickOutside";
 
 const citiesList = [
   "Oshawa",
@@ -14,16 +15,21 @@ const citiesList = [
   "Clear field",
 ];
 
-export default function SelectMenu() {
+export default function SelectCity() {
   const [showList, setShowList] = useState(false);
   const [cityName, setCityName] = useState("");
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  useClickOutside(containerRef, () => setShowList(false));
+
   return (
-    <div className="relative flex">
+    <div ref={containerRef} className="relative flex">
       <button
         type="button"
         className="w-full"
-        onClick={() => setShowList(!showList)}
+        onClick={() => {
+          setShowList(!showList);
+        }}
       >
         <Text
           as="p"

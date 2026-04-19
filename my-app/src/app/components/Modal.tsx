@@ -2,16 +2,27 @@
 
 import { CrossIcon } from "@/lib/icons/CrossIcon";
 import clsx from "clsx";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-type Modal = {
+type ModalProps = {
   children: React.ReactNode;
   openModal: boolean;
   setOpenModal: (arg: boolean) => void;
 };
 
-export default function Modal({ children, openModal, setOpenModal }: Modal) {
+export default function Modal({
+  children,
+  openModal,
+  setOpenModal,
+}: ModalProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     if (openModal) {
       document.body.style.overflow = "hidden";
@@ -38,6 +49,8 @@ export default function Modal({ children, openModal, setOpenModal }: Modal) {
     };
   }, [openModal, setOpenModal]);
 
+  if (!mounted) return null;
+
   return createPortal(
     <div
       className={clsx(
@@ -46,9 +59,9 @@ export default function Modal({ children, openModal, setOpenModal }: Modal) {
       )}
       onClick={() => setOpenModal(false)}
     >
-      <div className="relative w-full h-full flex items-center justify-center">
+      <div className="[perspective:1000px] relative w-full h-full flex items-center justify-center cursor-pointer">
         <button
-          className="absolute top-10 right-10 "
+          className="absolute top-10 right-10 hover:scale-125 transition"
           onClick={() => setOpenModal(false)}
         >
           <CrossIcon />
@@ -56,14 +69,16 @@ export default function Modal({ children, openModal, setOpenModal }: Modal) {
         <div
           onClick={(e) => e.stopPropagation()}
           className={clsx(
-            "bg-white z-50 transition-all duration-300",
-            openModal ? "opacity-100 scale-100" : "opacity-0 scale-95",
+            "bg-white z-50 transition-all duration-300 cursor-auto",
+            openModal
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 -translate-y-full rotate-x-45",
           )}
         >
           {children}
         </div>
       </div>
     </div>,
-    document.body,
+    window.document.body,
   );
 }

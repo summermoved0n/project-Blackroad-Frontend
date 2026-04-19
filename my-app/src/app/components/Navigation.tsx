@@ -39,7 +39,11 @@ const navList = [
   },
 ];
 
-export default function Navigation() {
+type NavigationProps = {
+  setOpenDropMenu: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function Navigation({ setOpenDropMenu }: NavigationProps) {
   const [activeImage, setActiveImage] = useState(navList[0].img);
   const [isHover, setIsHover] = useState(false);
 
@@ -48,7 +52,7 @@ export default function Navigation() {
       <ul className="flex flex-col gap-10">
         {navList.map(({ name, path, img }) => (
           <li key={path}>
-            <Link href={path}>
+            <Link href={path} onClick={() => setOpenDropMenu(false)}>
               <Text
                 as="h2"
                 color="white"

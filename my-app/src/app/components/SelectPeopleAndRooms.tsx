@@ -1,7 +1,10 @@
-import { useState } from "react";
+"use client";
+
+import { useRef, useState } from "react";
 import { Text } from "./Text";
 import { ArrowDownIcon } from "@/lib/icons/ArrowDownIcon";
 import SelectPeopleAndRoomsItem from "./SelectPeopleAndRoomsItem";
+import { useClickOutside } from "@/lib/hooks/useClickOutside";
 
 export default function SelectPeopleAndRooms() {
   const [adults, setAdulst] = useState(2);
@@ -10,8 +13,11 @@ export default function SelectPeopleAndRooms() {
 
   const [showOpasityModal, setShowOpasityModal] = useState(false);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  useClickOutside(containerRef, () => setShowOpasityModal(false));
+
   return (
-    <div className="relative flex">
+    <div ref={containerRef} className="relative flex">
       <button
         type="button"
         className="w-full"
