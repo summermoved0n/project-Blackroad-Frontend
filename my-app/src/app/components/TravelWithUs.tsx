@@ -46,32 +46,14 @@ const toursPerPage = 2;
 
 export default function TravelWithUs() {
   const [page, setPage] = useState(1);
+  const maxPage = Math.ceil(tours.length / toursPerPage) - 1;
 
-  const [toursToShow, setToursToShow] = useState(tours.slice(0, toursPerPage));
-
-  const onClickPrevPage = () => {
-    if (page !== 1) {
-      setPage((prev) => prev - 1);
-      setToursToShow(
-        tours.slice(
-          (page - 2) * toursPerPage,
-          (page - 2) * toursPerPage + toursPerPage,
-        ),
-      );
-    }
-
-    return;
+  const onNext = () => {
+    if (page < maxPage) setPage((prev) => prev + 1);
   };
 
-  const onClickNextPage = () => {
-    if (page < Math.ceil(tours.length / toursPerPage)) {
-      setPage((prev) => prev + 1);
-      setToursToShow(
-        tours.slice(page * toursPerPage, page * toursPerPage + toursPerPage),
-      );
-    }
-
-    return;
+  const onPrev = () => {
+    if (page > 0) setPage((prev) => prev - 1);
   };
 
   return (
@@ -91,7 +73,7 @@ export default function TravelWithUs() {
           <Button
             variant="tertiary"
             className="flex items-center justify-center"
-            onClick={onClickPrevPage}
+            onClick={onPrev}
           >
             <ArrowLeftIcon />
           </Button>
@@ -99,24 +81,31 @@ export default function TravelWithUs() {
           <Button
             variant="tertiary"
             className="flex items-center justify-center"
-            onClick={onClickNextPage}
+            onClick={onNext}
           >
             <ArrowRightIcon />
           </Button>
         </div>
       </div>
 
-      <div className="flex justify-center md:gap-7.5">
-        {toursToShow.map(({ id, title, description, image, price }) => (
-          <TourCard
-            key={id}
-            id={id}
-            title={title}
-            description={description}
-            image={image}
-            price={price}
-          />
-        ))}
+      <div className="overflow-hidden">
+        <div
+          className="flex gap-5 transition-transform duration-500 ease-out"
+          style={{
+            transform: `translateX(-${page * 100}%)`,
+          }}
+        >
+          {tours.map(({ id, title, description, image, price }) => (
+            <TourCard
+              key={id}
+              id={id}
+              title={title}
+              description={description}
+              image={image}
+              price={price}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

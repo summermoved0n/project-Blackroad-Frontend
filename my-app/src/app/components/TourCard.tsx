@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Text } from "./Text";
 import ButtonWithArrow from "./ButtonWithArrow";
+import clsx from "clsx";
 
 type TourCardProps = {
   id: number;
@@ -8,6 +9,7 @@ type TourCardProps = {
   description: string;
   image: string;
   price: number;
+  carouselClassName: string;
 };
 
 export default function TourCard({
@@ -16,21 +18,25 @@ export default function TourCard({
   description,
   image,
   price,
+  carouselClassName,
 }: TourCardProps) {
   return (
     <div
       id={id.toString()}
-      className="relative bg-black/30 h-187.5 w-100 p-10 flex items-end"
+      className={clsx(
+        carouselClassName,
+        "relative bg-black/30 h-187.5 p-10 flex items-end w-full",
+      )}
     >
       <Image
         className="object-cover -z-10 shadow-black/60"
         src={image}
         alt={title}
         fill
-        sizes="25vw"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         loading="eager"
       />
-      <div className="flex flex-col gap-[30px]">
+      <div className="flex flex-col gap-7.5">
         <Text as="h3" color="white" size="md">
           {title}
         </Text>

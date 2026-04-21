@@ -1,12 +1,13 @@
 "use client";
 
+import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeftIcon } from "@/lib/icons/ArrowLeftIcon";
 import { Button } from "./Button";
 import { Text } from "./Text";
 import { ArrowRightIcon } from "@/lib/icons/ArrowRightIcon";
 import TourCard from "./TourCard";
 import { useState } from "react";
-import { useToursPerPage } from "@/lib/hooks/useToursPerPage";
+import EmblaCarousel from "./Carousel";
 
 const tours = [
   {
@@ -43,39 +44,14 @@ const tours = [
   },
 ];
 
-const toursPerPage = 2;
-
 export default function PopularTours() {
-  const [page, setPage] = useState(1);
-  const [toursToShow, setToursToShow] = useState(tours.slice(0, toursPerPage));
+  const [emblaRef, emblaApi] = useEmblaCarousel();
 
-  const onClickPrevPage = () => {
-    if (page !== 1) {
-      setPage((prev) => prev - 1);
-      setToursToShow(
-        tours.slice(
-          (page - 2) * toursPerPage,
-          (page - 2) * toursPerPage + toursPerPage,
-        ),
-      );
-    }
-
-    return;
-  };
-
-  const onClickNextPage = () => {
-    if (page < Math.ceil(tours.length / toursPerPage)) {
-      setPage((prev) => prev + 1);
-      setToursToShow(
-        tours.slice(page * toursPerPage, page * toursPerPage + toursPerPage),
-      );
-    }
-
-    return;
-  };
+  const goToPrev = () => emblaApi?.scrollPrev();
+  const goToNext = () => emblaApi?.scrollNext();
 
   return (
-    <section className="relative mx-4 pt-12.5 pb-30 md:mx-20 md:pt-25  md:pt-0 md:pb-0 md:pb-37.5 md:flex md:justify-between">
+    <section className="relative mx-4 pt-12.5 pb-30 md:mx-20 md:pt-25  md:pt-0 md:pb-0 md:pb-37.5 grid grid-cols-1 md:grid-cols-2">
       <div className="flex flex-col justify-end gap-15">
         <Text
           as="h2"
@@ -91,7 +67,7 @@ export default function PopularTours() {
           <Button
             variant="tertiary"
             className="flex items-center justify-center"
-            onClick={onClickPrevPage}
+            onClick={goToPrev}
           >
             <ArrowLeftIcon />
           </Button>
@@ -99,25 +75,26 @@ export default function PopularTours() {
           <Button
             variant="tertiary"
             className="flex items-center justify-center"
-            onClick={onClickNextPage}
+            onClick={goToNext}
           >
             <ArrowRightIcon />
           </Button>
         </div>
       </div>
 
-      <div className="flex justify-center md:gap-7.5">
-        {toursToShow.map(({ id, title, description, image, price }) => (
+      <EmblaCarousel>
+        {tours.map(({ id, title, description, image, price }) => (
           <TourCard
             key={id}
             id={id}
+            carouselClassName="flex-[0_0_100%] lg:flex-[0_0_50%] xl:md:flex-[0_0_40%] min-w-0"
             title={title}
             description={description}
             image={image}
             price={price}
           />
         ))}
-      </div>
+      </EmblaCarousel>
     </section>
   );
 }
