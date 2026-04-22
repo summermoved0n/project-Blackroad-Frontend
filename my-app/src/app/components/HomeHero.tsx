@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { Text } from "./Text";
 import { Button } from "./Button";
-import { useState } from "react";
-import DatePicker from "./DatePicker";
 import HomeHeroForm from "./HomeHeroForm";
 import { useRouter } from "next/navigation";
 
@@ -12,10 +10,10 @@ export default function HomeHero() {
   const router = useRouter();
 
   return (
-    <div className="relative w-full px-4 lg:px-35 h-180 md:h-225 flex flex-col justify-center items-center gap-7.5">
+    <div className="relative w-full h-screen px-4 lg:px-35 h-180 flex flex-col justify-center items-center gap-7.5">
       <Image
         src="/images/Home_hero.jpg"
-        alt="Hero"
+        alt="Trees and mountains"
         fill
         className="object-cover object-center -z-10"
         sizes="100vw"
