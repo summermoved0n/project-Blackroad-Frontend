@@ -1,11 +1,14 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
+import { EmblaCarouselType } from "embla-carousel";
 import { Button } from "./Button";
 import { ArrowLeftIcon } from "@/lib/icons/ArrowLeftIcon";
 import { ArrowRightIcon } from "@/lib/icons/ArrowRightIcon";
 import TourCard from "./TourCard";
 import { Text } from "./Text";
+import { useEffect, useState } from "react";
+import { CarouselDotIcon } from "@/lib/icons/CarouselDotIcon";
 
 type CarouselProps = {
   componentTitle: string;
@@ -20,32 +23,50 @@ type CarouselProps = {
 
 export default function Carousel({ tours, componentTitle }: CarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel();
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const [selectedSnap, setSelectedSnap] = useState(0);
+
+  const goTo = (index: number) => emblaApi?.scrollTo(index);
+  const setupSnaps = (api: EmblaCarouselType) => {
+    setScrollSnaps(api.scrollSnapList());
+  };
+  const setActiveSnap = (api: EmblaCarouselType) =>
+    setSelectedSnap(api.selectedScrollSnap());
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setupSnaps(emblaApi);
+    setActiveSnap(emblaApi);
+
+    emblaApi.on("reInit", setupSnaps);
+    emblaApi.on("reInit", setActiveSnap);
+    emblaApi.on("select", setActiveSnap);
+  }, [emblaApi]);
 
   const goToPrev = () => emblaApi?.scrollPrev();
   const goToNext = () => emblaApi?.scrollNext();
 
   return (
-    <section className="relative mx-4 pt-12.5 pb-30 md:mx-20 md:pt-25  md:pt-0 md:pb-0 md:pb-37.5 grid grid-cols-1 md:grid-cols-2">
-      <div className="flex flex-col justify-end gap-15">
-        <Text
-          as="h2"
-          color="black"
-          size="lg"
-          spacing="sm"
-          className="mb-7.5 md:mb-0 md:w-60 text-center md:text-left uppercase"
-        >
-          {componentTitle}
-        </Text>
-      </div>
+    <section className="relative mx-4 pt-12.5 md:mx-20 md:py-25 md:grid md:grid-cols-2 md:items-end">
+      <Text
+        as="h2"
+        color="black"
+        size="lg"
+        spacing="sm"
+        className="mb-7.5 md:mb-0 md:pb-35 md:w-60 text-center md:text-left uppercase"
+      >
+        {componentTitle}
+      </Text>
 
-      <div className="embla">
+      <div>
         <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex md:gap-5 touch-pan-y touch-pinch-zoom">
+          <div className="flex gap-5 touch-pan-y touch-pinch-zoom">
             {tours.map(({ id, title, description, image, price }) => (
               <TourCard
                 key={id}
                 id={id}
-                carouselClassName="flex-[0_0_100%] lg:flex-[0_0_50%] xl:md:flex-[0_0_40%] min-w-0"
+                carouselClassName="flex-[0_0_100%] xl:flex-[0_0_49%] min-w-0"
                 title={title}
                 description={description}
                 image={image}
@@ -55,7 +76,19 @@ export default function Carousel({ tours, componentTitle }: CarouselProps) {
           </div>
         </div>
 
-        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 md:relative md:bottom-0 md:left-0 md:transform-none md:translate-0 flex justify-center md:justify-start gap-10">
+        <div className="flex items-center justify-center mt-4 gap-2.5 md:hidden">
+          {scrollSnaps.map((_, index) => (
+            <button className="" key={index} onClick={() => goTo(index)}>
+              {selectedSnap === index ? (
+                <CarouselDotIcon color="1" />
+              ) : (
+                <CarouselDotIcon />
+              )}
+            </button>
+          ))}
+        </div>
+
+        <div className="hidden md:flex md:absolute md:bottom-25 md:left-0 md:gap-10">
           <Button
             variant="tertiary"
             className="flex items-center justify-center"

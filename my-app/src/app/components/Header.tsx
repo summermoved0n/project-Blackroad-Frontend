@@ -57,9 +57,14 @@ export default function Header() {
       <p>Log in</p>
       <Link
         href="/build-tour"
-        className="hidden md:flex border-l border-white/10 h-20 px-17.5  items-center hover:bg-[#ea9c3f] transition"
+        className="hidden md:flex border-l border-white/10 h-20 px-17.5  items-center group"
       >
-        <Text as="p" color="white" size="sm" className="">
+        <Text
+          as="p"
+          color="white"
+          size="sm"
+          className="group-hover:text-orange-300 transition"
+        >
           Build trip
         </Text>
       </Link>

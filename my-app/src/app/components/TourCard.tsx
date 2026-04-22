@@ -54,7 +54,7 @@ export default function TourCard({
           </ButtonWithArrow>
 
           <Text as="p" color="white" size="md">
-            ${price} CA$
+            {price} CA$
           </Text>
         </div>
       </div>
