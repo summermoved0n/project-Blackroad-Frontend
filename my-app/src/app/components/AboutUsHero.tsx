@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Text } from "./Text";
 import { usePathname } from "next/navigation";
+
+import { Text } from "./Text";
 import { formatPathname } from "@/lib/utility/helpers";
 import { ChevronRightIcon } from "@/lib/icons/ChevronRightIcon";
 

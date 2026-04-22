@@ -1,10 +1,11 @@
-import React from "react";
 import AboutUsHero from "../components/AboutUsHero";
+import AboutUsMain from "../components/AboutUsMain";
 
 export default function Page() {
   return (
-    <div>
+    <main>
       <AboutUsHero />
-    </div>
+      <AboutUsMain />
+    </main>
   );
 }
