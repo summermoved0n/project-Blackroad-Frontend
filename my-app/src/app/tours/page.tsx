@@ -1,5 +1,10 @@
-import React from "react";
+import ToursHero from "../components/ToursHero";
 
 export default function page() {
-  return <div className="text-white mt-30">Tours page</div>;
+  return (
+    <main>
+      <ToursHero />
+      <div className="bg-[#1e1e1f] py-25 px-20"></div>
+    </main>
+  );
 }

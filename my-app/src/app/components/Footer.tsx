@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "./Logo";
 import { Text } from "./Text";
 import { InstagramIcon } from "@/lib/icons/InstagramIcon";
@@ -7,6 +6,7 @@ import Link from "next/link";
 import { Button } from "./Button";
 import { MastercardIcon } from "@/lib/icons/MastercardIcon";
 import { VisaIcon } from "@/lib/icons/VisaIcon";
+import clsx from "clsx";
 
 const navigationLinks = [
   { name: "Tours", path: "tours" },
@@ -18,7 +18,12 @@ const navigationLinks = [
 
 export default function Footer() {
   return (
-    <footer className="py-12.5 px-4 md:py-0 md:pt-17.5 md:pb-25 md:px-20 bg-[#1e1e1f] grid md:grid-cols-[1fr_1fr_2fr] gap-7.5 md:gap-0">
+    <footer
+      className={clsx(
+        "py-12.5 px-4 md:py-0 md:pt-17.5 md:pb-25 md:px-20 bg-[#1e1e1f] grid md:grid-cols-[1fr_1fr_2fr] gap-7.5 relative",
+        "after:content-[''] after:absolute after:left-0 after:top-0 after:w-full after:h-px after:bg-[#d0d0d0] md:after:left-[5%] md:after:w-[90%]",
+      )}
+    >
       <div className="text-white flex flex-col gap-7.5">
         <Logo />
         <Text as="p" color="white60" size="sm">
