@@ -1,14 +1,16 @@
-import Image from "next/image";
 import { Text } from "./Text";
+import AboutUsFirstSection from "./AboutUsFirstSection";
+import AboutUsMiddleSection from "./AboutUsMiddleSection";
+import AboutUsLastSection from "./AboutUsLastSection";
 
 export default function AboutUsMain() {
   return (
     <section className="pt-12.5 pb-12.5 mx-4 md:pt-37.5 md:pb-50 md:mx-20">
-      <div className="md:mb-50">
+      <div className="mb-7.5 md:mb-50">
         <Text as="h2" color="black" size="xl" className="uppercase md:mb-25">
           We change the idea of traveling in Canada!
         </Text>
-        <div className="grid grid-cols-3 justify-end gap-7.5">
+        <div className="grid md:grid-cols-3 justify-end gap-5 md:gap-7.5">
           <p></p>
           <Text as="p" color="black60" size="sm">
             Magical places and fantastic entertainment are two main components
@@ -24,22 +26,12 @@ export default function AboutUsMain() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-35">
-        <div className="relative w-full h-95">
-          <div className="absolute bg-white h-full w-7.5"></div>
-          <Image
-            className="object-cover object-center -z-10"
-            src="/images/We_change_left.jpg"
-            alt=""
-            fill
-          />
-        </div>
+      <div className="flex flex-col gap-7.5 md:gap-50">
+        <AboutUsFirstSection />
 
-        <Text as="p" color="black60" size="sm">
-          Every day we create new travel programs, develop routes, expand our
-          base of partners in all tourist corners of the country to provide you
-          with maximum opportunities for traveling in Canada.
-        </Text>
+        <AboutUsMiddleSection />
+
+        <AboutUsLastSection />
       </div>
     </section>
   );
