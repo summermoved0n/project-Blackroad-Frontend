@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Text } from "./Text";
 import { Button } from "./Button";
-import HomeHeroForm from "./HomeHeroForm";
+import SearchForm from "./SearchForm";
 import { useRouter } from "next/navigation";
 
 export default function HomeHero() {
@@ -25,7 +25,7 @@ export default function HomeHero() {
         color="white"
         size="lg"
         spacing="sm"
-        className="w-full text-center"
+        className="w-full text-center md:mb-30"
       >
         INSPIRATION IN EVERY JOURNEY
       </Text>
@@ -39,7 +39,7 @@ export default function HomeHero() {
         Book
       </Button>
 
-      <HomeHeroForm />
+      <SearchForm />
     </div>
   );
 }
