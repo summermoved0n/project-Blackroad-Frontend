@@ -10,6 +10,7 @@ type ButtonWithArrowProps = {
   className?: string;
   path?: string;
   whiteArrow?: boolean;
+  whiteCircle?: boolean;
 };
 
 export default function ButtonWithArrow({
@@ -17,6 +18,7 @@ export default function ButtonWithArrow({
   className,
   path,
   whiteArrow,
+  whiteCircle,
   ...props
 }: ButtonWithArrowProps) {
   const router = useRouter();
@@ -33,9 +35,9 @@ export default function ButtonWithArrow({
       {...props}
     >
       {children}
-      <CircleIcon />
+      {whiteCircle ? <CircleIcon whiteCircle /> : <CircleIcon />}
       <div className="absolute right-[10px]">
-        <ArrowInCircle whiteArrow={whiteArrow} />
+        {whiteArrow ? <ArrowInCircle whiteArrow /> : <ArrowInCircle />}
       </div>
     </Button>
   );

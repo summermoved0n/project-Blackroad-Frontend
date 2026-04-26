@@ -16,7 +16,7 @@ export default function Filter() {
   const selectedRating = getSelected("rating");
 
   return (
-    <div className="py-10 px-7.5 bg-[#171717] flex flex-col gap-10">
+    <div className="py-10 px-7.5 bg-[#171717] h-fit flex flex-col gap-10">
       <Text as="h4" color="white" size="md">
         All filters
       </Text>
