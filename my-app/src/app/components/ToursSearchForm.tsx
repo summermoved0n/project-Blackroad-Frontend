@@ -1,42 +1,43 @@
-import { ArrowDownIcon } from "@/lib/icons/ArrowDownIcon";
+"use client";
+
 import SearchForm from "./SearchForm";
-import { Text } from "./Text";
 import Filter from "./Filter";
 import ToursList from "./ToursList";
+import SortBy from "./SortBy";
+import { useFilters } from "@/lib/hooks/useFilters";
+import clsx from "clsx";
 
 export default function ToursSearchForm() {
+  const { setPage, searchParams } = useFilters();
+  const currentPage = Number(searchParams.get("page") || 1);
+
   return (
-    <section>
+    <section className="bg-[#1e1e1f] py-25 px-20">
       <div className="bg-[#171717] rounded-xl md:mb-25">
         <SearchForm />
       </div>
 
       <div className="flex justify-between items-center md:mb-12.5">
-        <Text
-          as="h3"
-          color="white"
-          size="lg"
-          spacing="sm"
-          className="uppercase"
-        >
-          choose a tour
-        </Text>
-        <div className="flex items-center gap-7.5">
-          <Text as="p" color="white" size="md">
-            Sort by:
-          </Text>
-
-          <Text as="p" color="white60" size="sm">
-            default
-          </Text>
-
-          <ArrowDownIcon />
-        </div>
+        <SortBy />
       </div>
 
       <div className="grid md:grid-cols-[1fr_2fr] md:gap-7.5">
         <Filter />
         <ToursList />
+      </div>
+
+      <div className="pt-10 flex items-center justify-center gap-10">
+        <button
+          className={clsx("text-white", currentPage === 1 && "bg-amber-600")}
+          onClick={() => setPage(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Prev
+        </button>
+
+        <button className="text-white" onClick={() => setPage(currentPage + 1)}>
+          Next
+        </button>
       </div>
     </section>
   );

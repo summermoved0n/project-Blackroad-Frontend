@@ -1,4 +1,14 @@
-export const toursListData = [
+type ToursListDataProps = {
+  id: number;
+  categories: string;
+  title: string;
+  img: string;
+  stars: 1 | 2 | 3 | 4 | 5;
+  desc: string;
+  price: number;
+}[];
+
+export const toursListData: ToursListDataProps = [
   {
     id: 1,
     categories: "Lakes",

@@ -5,7 +5,20 @@ import { useRouter, useSearchParams } from "next/navigation";
 export function useFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const clearFilter = () => router.replace("/tours", { scroll: false });
+
+  const setPage = (page: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (page <= 1) {
+      params.set("page", "1");
+    } else {
+      params.set("page", page.toString());
+    }
+
+    router.replace(`?${params.toString()}`, { scroll: false });
+  };
+
+  const clearFilter = () => router.replace("/tours?page=1", { scroll: false });
 
   const toggleFilter = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -21,13 +34,15 @@ export function useFilters() {
     }
 
     if (next.length > 0) {
+      params.set("page", "1");
       params.set(key, next.join(","));
     } else {
+      params.set("page", "1");
       params.delete(key);
     }
 
     router.replace(`?${params.toString()}`, { scroll: false });
   };
 
-  return { toggleFilter, searchParams, clearFilter };
+  return { setPage, toggleFilter, searchParams, clearFilter };
 }
