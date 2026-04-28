@@ -1,7 +1,6 @@
 import Image from "next/image";
-import React from "react";
-import { Text } from "./Text";
-import { Button } from "./Button";
+import { Text } from "../components/Text";
+import { Button } from "../components/Button";
 
 export default function KeepInTouch() {
   return (

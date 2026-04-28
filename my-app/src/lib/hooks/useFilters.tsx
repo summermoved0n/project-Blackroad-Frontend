@@ -18,6 +18,23 @@ export function useFilters() {
     router.replace(`?${params.toString()}`, { scroll: false });
   };
 
+  const getPages = (current: number, total: number) => {
+    const delta = 1;
+
+    let start = Math.max(1, current - delta);
+    let end = Math.min(total, current + delta);
+
+    if (current === 1) {
+      end = Math.min(total, 3);
+    }
+
+    if (current === total) {
+      start = Math.max(1, total - 2);
+    }
+
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  };
+
   const clearFilter = () => router.replace("/tours?page=1", { scroll: false });
 
   const toggleFilter = (key: string, value: string) => {
@@ -44,5 +61,5 @@ export function useFilters() {
     router.replace(`?${params.toString()}`, { scroll: false });
   };
 
-  return { setPage, toggleFilter, searchParams, clearFilter };
+  return { setPage, getPages, toggleFilter, searchParams, clearFilter };
 }

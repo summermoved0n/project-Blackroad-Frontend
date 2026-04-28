@@ -5,10 +5,10 @@ import { EmblaCarouselType } from "embla-carousel";
 import { Button } from "./Button";
 import { ArrowLeftIcon } from "@/lib/icons/ArrowLeftIcon";
 import { ArrowRightIcon } from "@/lib/icons/ArrowRightIcon";
-import TourCard from "./TourCard";
 import { Text } from "./Text";
 import { useEffect, useState } from "react";
 import { CarouselDotIcon } from "@/lib/icons/CarouselDotIcon";
+import TourCard from "../home/TourCard";
 
 type CarouselProps = {
   componentTitle: string;

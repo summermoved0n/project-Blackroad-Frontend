@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Text } from "./Text";
-import { Button } from "./Button";
-import SearchForm from "./SearchForm";
 import { useRouter } from "next/navigation";
+import { Text } from "../components/Text";
+import { Button } from "../components/Button";
+import SearchForm from "../components/SearchForm";
 
 export default function HomeHero() {
   const router = useRouter();

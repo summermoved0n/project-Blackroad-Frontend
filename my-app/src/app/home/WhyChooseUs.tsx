@@ -1,10 +1,5 @@
-import { Text } from "./Text";
-
-const dateOfCustomers = [
-  { id: 1, numbers: "16", text: "Years of experience" },
-  { id: 2, numbers: "5000", text: "Satisfied customers" },
-  { id: 3, numbers: "24/7", text: "In touch" },
-];
+import { dataOfCustomers } from "@/lib/data/homePageData";
+import { Text } from "../components/Text";
 
 export default function WhyChooseUs() {
   return (
@@ -20,7 +15,7 @@ export default function WhyChooseUs() {
       </Text>
 
       <div className="flex flex-col lg:flex-row items-center md:justify-between gap-5 lg:gap-0">
-        {dateOfCustomers.map(({ id, numbers, text }) => (
+        {dataOfCustomers.map(({ id, numbers, text }) => (
           <div
             key={id}
             className="w-[300px] h-[300px] flex flex-col items-center justify-center gap-2.5 border border-white/10 rounded-full"

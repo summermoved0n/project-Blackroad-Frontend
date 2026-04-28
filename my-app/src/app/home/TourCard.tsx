@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { Text } from "./Text";
-import ButtonWithArrow from "./ButtonWithArrow";
 import clsx from "clsx";
+import { Text } from "../components/Text";
+import ButtonWithArrow from "../components/ButtonWithArrow";
 
 type TourCardProps = {
   id: number;

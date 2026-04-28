@@ -1,9 +1,9 @@
-import { Text } from "./Text";
 import { ArrowDownIcon } from "@/lib/icons/ArrowDownIcon";
+import { Text } from "../components/Text";
 
 export default function SortBy() {
   return (
-    <>
+    <div className="flex justify-between items-center md:mb-12.5">
       <Text as="h3" color="white" size="lg" spacing="sm" className="uppercase">
         choose a tour
       </Text>
@@ -18,6 +18,6 @@ export default function SortBy() {
 
         <ArrowDownIcon />
       </div>
-    </>
+    </div>
   );
 }

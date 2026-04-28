@@ -1,7 +1,7 @@
-import { Text } from "./Text";
+import { Text } from "../components/Text";
 import AboutUsFirstSection from "./AboutUsFirstSection";
-import AboutUsMiddleSection from "./AboutUsMiddleSection";
 import AboutUsLastSection from "./AboutUsLastSection";
+import AboutUsMiddleSection from "./AboutUsMiddleSection";
 
 export default function AboutUsMain() {
   return (

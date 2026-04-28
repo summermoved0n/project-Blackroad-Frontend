@@ -1,5 +1,5 @@
-import { Text } from "./Text";
-import ButtonWithArrow from "./ButtonWithArrow";
+import ButtonWithArrow from "../components/ButtonWithArrow";
+import { Text } from "../components/Text";
 
 export default function ExploreWithUs() {
   return (

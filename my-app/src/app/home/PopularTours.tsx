@@ -1,5 +1,5 @@
 import { popularTours } from "@/lib/data/homePageData";
-import Carousel from "./Carousel";
+import Carousel from "../components/Carousel";
 
 export default function PopularTours() {
   return (

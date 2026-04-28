@@ -1,5 +1,5 @@
-import ToursHero from "../components/ToursHero";
-import ToursSearchForm from "../components/ToursSearchForm";
+import ToursSearchForm from "./ToursSearchForm";
+import ToursHero from "./ToursHero";
 
 export default function page() {
   return (

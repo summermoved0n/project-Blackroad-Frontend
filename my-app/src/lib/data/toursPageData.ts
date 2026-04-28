@@ -81,4 +81,13 @@ export const toursListData: ToursListDataProps = [
     desc: "Moving to the picturesque rock canyon in the village of Buki. Excursion in the form of an easy walk, during which you will see what a large-scale natural event took place here.",
     price: 3000,
   },
+  {
+    id: 9,
+    categories: "Lakes",
+    title: "Rest in the canyon",
+    img: "/images/Travel_with_us(canyon).jpg",
+    stars: 5,
+    desc: "Moving to the picturesque rock canyon in the village of Buki. Excursion in the form of an easy walk, during which you will see what a large-scale natural event took place here.",
+    price: 3000,
+  },
 ];

@@ -1,7 +1,6 @@
-import React from "react";
-import { Text } from "./Text";
 import { InstagramIcon } from "@/lib/icons/InstagramIcon";
-import ReviewStars from "./ReviewStars";
+import ReviewStars from "../components/ReviewStars";
+import { Text } from "../components/Text";
 
 type ReviewsItemProps = {
   stars: 1 | 2 | 3 | 4 | 5;

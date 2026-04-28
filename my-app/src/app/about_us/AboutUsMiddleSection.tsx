@@ -1,6 +1,5 @@
 import Image from "next/image";
-import React from "react";
-import { Text } from "./Text";
+import { Text } from "../components/Text";
 
 export default function AboutUsMiddleSection() {
   return (
