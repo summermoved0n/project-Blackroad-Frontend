@@ -25,7 +25,7 @@ export default function TourInfo({ tourData }: TourInfoProps) {
 
   const { id, categories, title, img, stars, desc, price } = tourData || {};
   return (
-    <section className="flex flex-col items-center justify-center">
+    <section className="flex flex-col items-center justify-center pb-25">
       <div className="py-3 px-5 bg-[#171717] rounded-md flex w-fit justify-center items-center gap-2 mb-12.5">
         <Text as="p" color="white60" size="xs">
           Main

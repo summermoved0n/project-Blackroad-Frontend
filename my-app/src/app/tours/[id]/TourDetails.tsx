@@ -3,6 +3,7 @@
 import { toursListData } from "@/lib/data/toursPageData";
 import { notFound, useParams } from "next/navigation";
 import TourInfo from "./TourInfo";
+import TourDates from "./TourDates";
 
 export default function TourDetails() {
   const tourDetails = useParams();
@@ -19,8 +20,8 @@ export default function TourDetails() {
   return (
     <main className="pt-17 sm:pt-20 bg-[#171717]">
       <div className="bg-[#1e1e1f] px-20 pt-6.5 pb-37.5">
-        {/* <p className="text-white">TourDetails: {tourDetails.id}</p> */}
         <TourInfo tourData={tourData} />
+        <TourDates />
       </div>
     </main>
   );
