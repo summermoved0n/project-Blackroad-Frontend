@@ -48,6 +48,7 @@ export default function ToursListItem({ itemData }: ToursListItemProps) {
           alt={title}
           fill
           className="absolute inset-0 w-full h-full object-cover"
+          sizes="33vw"
         />
       </div>
       <div className="px-5 py-5 flex flex-col gap-7.5">

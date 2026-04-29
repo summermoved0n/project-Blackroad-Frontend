@@ -18,7 +18,7 @@ export default function WhyChooseUs() {
         {dataOfCustomers.map(({ id, numbers, text }) => (
           <div
             key={id}
-            className="w-[300px] h-[300px] flex flex-col items-center justify-center gap-2.5 border border-white/10 rounded-full"
+            className="w-75 h-75 flex flex-col items-center justify-center gap-2.5 border border-white/10 rounded-full"
           >
             <Text as="p" color="white" size="xl">
               {numbers}
