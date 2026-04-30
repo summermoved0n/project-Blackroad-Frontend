@@ -1,17 +1,21 @@
 "use client";
 
-import { toursListData } from "@/lib/data/toursPageData";
+import {
+  includedInTheTour,
+  notIncludedInTheTour,
+  toursListData,
+} from "@/lib/data/toursPageData";
 import { notFound, useParams } from "next/navigation";
 import TourInfo from "./TourInfo";
 import TourDates from "./TourDates";
+import TourInclude from "./TourInclude";
+import TourAdvantages from "./TourAdvantages";
 
 export default function TourDetails() {
   const tourDetails = useParams();
   const tourData = toursListData.find(
     (item) => item.id === Number(tourDetails.id),
   );
-
-  console.log(tourData);
 
   if (!tourData) {
     notFound();
@@ -22,6 +26,11 @@ export default function TourDetails() {
       <div className="bg-[#1e1e1f] px-20 pt-6.5 pb-37.5">
         <TourInfo tourData={tourData} />
         <TourDates />
+        <TourInclude
+          included={includedInTheTour}
+          notIncluded={notIncludedInTheTour}
+        />
+        <TourAdvantages />
       </div>
     </main>
   );
