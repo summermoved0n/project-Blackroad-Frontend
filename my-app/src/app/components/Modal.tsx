@@ -61,7 +61,7 @@ export default function Modal({
     >
       <div className="[perspective:1000px] relative w-full h-full flex items-center justify-center cursor-pointer">
         <button
-          className="absolute top-10 right-10 hover:scale-125 transition"
+          className="absolute z-10 top-10 right-10 hover:scale-125 transition"
           onClick={() => setOpenModal(false)}
         >
           <CrossIcon />
@@ -69,7 +69,7 @@ export default function Modal({
         <div
           onClick={(e) => e.stopPropagation()}
           className={clsx(
-            "bg-white z-50 transition-all duration-300 cursor-auto",
+            "md:bg-white w-full h-full md:w-fit md:h-fit transition-all duration-300 cursor-auto overflow-auto",
             openModal
               ? "opacity-100 translate-y-0"
               : "opacity-0 -translate-y-full rotate-x-45",

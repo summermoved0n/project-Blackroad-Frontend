@@ -8,6 +8,7 @@ import { Text } from "../components/Text";
 
 export default function ToursHero() {
   const searchPathname = usePathname();
+
   return (
     <section className="relative w-full h-screen bg-black/30 flex items-center justify-center px-4">
       <div className="absolute rounded-lg top-25 px-5 py-3 backdrop-blur-md flex items-center justify-center gap-2">
@@ -28,7 +29,13 @@ export default function ToursHero() {
         fill
       />
 
-      <Text as="h2" color="white" size="lg" spacing="sm" className="uppercase">
+      <Text
+        as="h2"
+        color="white"
+        size="lg"
+        spacing="sm"
+        className="uppercase text-center"
+      >
         travel canada with us!
       </Text>
     </section>

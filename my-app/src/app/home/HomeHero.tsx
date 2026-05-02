@@ -5,8 +5,12 @@ import { useRouter } from "next/navigation";
 import { Text } from "../components/Text";
 import { Button } from "../components/Button";
 import SearchForm from "../components/SearchForm";
+import { useState } from "react";
+import { DateRange } from "react-day-picker";
 
 export default function HomeHero() {
+  const [pickDate, setPickDate] = useState<DateRange | undefined>();
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
   return (
@@ -39,7 +43,12 @@ export default function HomeHero() {
         Book
       </Button>
 
-      <SearchForm />
+      <SearchForm
+        pickDate={pickDate}
+        setPickDate={setPickDate}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </div>
   );
 }

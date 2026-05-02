@@ -53,7 +53,7 @@ export default function Header() {
         )}
       </div>
       <p className="hidden md:block">Fr / En</p>
-      <Logo />
+      <Logo onClose={setOpenDropMenu} />
       <p>Log in</p>
       <Link
         href="/build-tour"

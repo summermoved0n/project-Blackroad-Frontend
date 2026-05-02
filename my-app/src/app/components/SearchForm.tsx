@@ -6,15 +6,24 @@ import SelectDate from "./SelectDate";
 import SelectPeopleAndRooms from "./SelectPeopleAndRooms";
 import Modal from "./Modal";
 import DatePicker from "./DatePicker";
-import { useState } from "react";
 import { DateRange } from "react-day-picker";
+import { Dispatch, SetStateAction } from "react";
 
-export default function SearchForm() {
-  const [pickDate, setPickDate] = useState<DateRange | undefined>();
-  const [showModal, setShowModal] = useState(false);
+type SearchFormProps = {
+  pickDate: DateRange | undefined;
+  setPickDate: Dispatch<SetStateAction<DateRange | undefined>>;
+  showModal: boolean;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
+};
 
+export default function SearchForm({
+  pickDate,
+  setPickDate,
+  showModal,
+  setShowModal,
+}: SearchFormProps) {
   return (
-    <div className="hidden md:pl-10 md:block md:h-17.5 md:w-full xl:pl-15 md:backdrop-blur-sm rounded-xl md:grid md:grid-cols-[1fr_1fr_1fr_180px] md:gap-12.5">
+    <div className="hidden md:pl-10 md:h-17.5 md:w-full xl:pl-15 md:backdrop-blur-sm rounded-xl md:grid md:grid-cols-[1fr_1fr_1fr_180px] md:gap-12.5">
       <SelectCity />
       <SelectDate setShowModal={setShowModal} pickDate={pickDate} />
       <SelectPeopleAndRooms />

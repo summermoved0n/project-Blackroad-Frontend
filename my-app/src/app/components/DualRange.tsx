@@ -4,7 +4,7 @@ import { Range, getTrackBackground } from "react-range";
 import { useState } from "react";
 
 const MIN = 100;
-const MAX = 1000;
+const MAX = 1100;
 
 export default function DualRange() {
   const [values, setValues] = useState([250, 750]);
@@ -17,7 +17,7 @@ export default function DualRange() {
 
       <Range
         values={values}
-        step={1}
+        step={10}
         min={MIN}
         max={MAX}
         onChange={(vals) => setValues(vals)}
@@ -49,7 +49,7 @@ export default function DualRange() {
             <div
               key={key}
               {...rest}
-              className="h-5 w-5 rounded-full bg-[#ea9c3f] flex items-center justify-center shadow"
+              className="h-5 w-5 rounded-full bg-[#ea9c3f]"
             ></div>
           );
         }}

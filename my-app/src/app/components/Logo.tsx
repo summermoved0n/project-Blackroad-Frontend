@@ -2,6 +2,7 @@
 
 import { Italiana } from "next/font/google";
 import Link from "next/link";
+import { Dispatch, SetStateAction } from "react";
 
 const italiana = Italiana({
   variable: "--font-italiana",
@@ -9,9 +10,17 @@ const italiana = Italiana({
   weight: "400",
 });
 
-export default function Logo() {
+type LogoProps = {
+  onClose: Dispatch<SetStateAction<boolean>>;
+};
+
+export default function Logo({ onClose }: LogoProps) {
   return (
-    <Link href="/" className={`text-2xl sm:text-5xl ${italiana.className}`}>
+    <Link
+      onClick={() => onClose(false)}
+      href="/"
+      className={`text-2xl sm:text-5xl ${italiana.className}`}
+    >
       BLACKROAD
     </Link>
   );

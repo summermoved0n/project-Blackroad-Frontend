@@ -27,7 +27,7 @@ export default function SelectPeopleAndRooms() {
           as="p"
           color="white"
           size="sm"
-          className="flex items-center justify-between pb-2.5 border-b-1 border-white/10"
+          className="flex items-center justify-between py-5 md:py-0 md:pb-2.5 border-b-1 border-white/10"
         >
           {`${adults} adults, ${children} children, ${rooms} room`}
           <ArrowDownIcon />
@@ -35,7 +35,7 @@ export default function SelectPeopleAndRooms() {
       </button>
 
       {showOpasityModal && (
-        <div className="absolute top-full w-full px-2.5 py-2.5 xl:px-7.5 xl:py-7.5 flex flex-col gap-5 bg-white">
+        <div className="absolute top-full w-full px-2.5 py-2.5 xl:px-7.5 xl:py-7.5 flex flex-col gap-5 bg-white z-20">
           <SelectPeopleAndRoomsItem
             title={"Adults"}
             quantity={adults}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Text } from "./Text";
 import { ArrowDownIcon } from "@/lib/icons/ArrowDownIcon";
 import { useClickOutside } from "@/lib/hooks/useClickOutside";
@@ -35,7 +35,7 @@ export default function SelectCity() {
           as="p"
           color="white"
           size="sm"
-          className="flex items-center justify-between pb-2.5 border-b-1 border-white/10"
+          className="flex items-center justify-between py-5 md:py-0 md:pb-2.5 border-b-1 border-white/10"
         >
           {!cityName || cityName === "Clear field"
             ? "Where are you going?"
@@ -45,7 +45,7 @@ export default function SelectCity() {
       </button>
 
       {showList && (
-        <ul className="absolute top-full w-full">
+        <ul className="absolute top-full w-full z-20">
           {citiesList.map((item) => (
             <li
               key={item}
