@@ -6,11 +6,27 @@ import { Button } from "../components/Button";
 import { FilterIcon } from "@/lib/icons/FilterIcon";
 import { ArrowUpDownIcon } from "@/lib/icons/ArrowUpDownIcon";
 import Modal from "../components/Modal";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Filter from "../components/Filter";
+import SortByList from "./SortByList";
+import { useClickOutside } from "@/lib/hooks/useClickOutside";
+
+const sortOptions = [
+  { id: 1, label: "default" },
+  { id: 2, label: "price: Low to High" },
+  { id: 3, label: "price: High to Low" },
+  { id: 4, label: "rating" },
+  { id: 5, label: "popularity" },
+];
 
 export default function SortBy() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [openFilterModal, setOpenFilterModal] = useState(false);
+  const [openSortModal, setOpenSortModal] = useState(false);
+  const [showSortList, setShowSortList] = useState(false);
+  const [sortName, setSortName] = useState("default");
+  useClickOutside(containerRef, () => setShowSortList(false));
+
   return (
     <div className="flex flex-col md:flex-row md:justify-between md:items-center mt-12.5 mb-7.5 md:mb-12.5 md:mt-0">
       <Text
@@ -23,16 +39,38 @@ export default function SortBy() {
         choose a tour
       </Text>
 
-      <div className="hidden md:flex items-center gap-7.5">
+      <div className="relative hidden md:flex items-center gap-7.5">
         <Text as="p" color="white" size="md">
           Sort by:
         </Text>
 
-        <Text as="p" color="white60" size="sm">
-          default
-        </Text>
+        <button
+          type="button"
+          className="flex items-center gap-7.5"
+          onClick={() => setShowSortList(!showSortList)}
+        >
+          <Text as="p" color="white60" size="sm" className="w-37 text-right">
+            {sortName}
+          </Text>
 
-        <ArrowDownIcon />
+          <ArrowDownIcon />
+        </button>
+
+        {showSortList && (
+          <div
+            ref={containerRef}
+            className="absolute top-10 bg-[#171717] rounded-md p-5 flex flex-col gap-2.5 z-20"
+          >
+            {sortOptions.map(({ id, label }) => (
+              <SortByList
+                key={id}
+                label={label}
+                setShowSortList={setShowSortList}
+                setSortName={setSortName}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="flex gap-2 w-full md:hidden">
@@ -52,16 +90,25 @@ export default function SortBy() {
           variant="primary"
           size="sm"
           className="flex justify-center items-center gap-2"
+          onClick={() => setOpenSortModal(true)}
         >
           <ArrowUpDownIcon />
           <Text as="span" color="white" size="sm">
-            Sort
+            Sort by
           </Text>
         </Button>
       </div>
 
       <Modal openModal={openFilterModal} setOpenModal={setOpenFilterModal}>
         <Filter />
+      </Modal>
+
+      <Modal openModal={openSortModal} setOpenModal={setOpenSortModal}>
+        fsdfsd
+        {/* <SortByList
+          setShowSortList={setShowSortList}
+          setSortName={setSortName}
+        /> */}
       </Modal>
     </div>
   );

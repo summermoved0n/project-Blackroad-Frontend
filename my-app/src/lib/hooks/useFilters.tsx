@@ -6,6 +6,14 @@ export function useFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  const setFilter = (key: string, value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    params.set(key, value);
+
+    router.replace(`?${params}`, { scroll: false });
+  };
+
   const setPage = (page: number) => {
     const params = new URLSearchParams(searchParams.toString());
 
@@ -61,5 +69,12 @@ export function useFilters() {
     router.replace(`?${params.toString()}`, { scroll: false });
   };
 
-  return { setPage, getPages, toggleFilter, searchParams, clearFilter };
+  return {
+    setPage,
+    getPages,
+    toggleFilter,
+    searchParams,
+    clearFilter,
+    setFilter,
+  };
 }
