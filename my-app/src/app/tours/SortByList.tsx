@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { Text } from "../components/Text";
-import { useFilters } from "@/lib/hooks/useFilters";
+import { Text } from "@/components/Text";
+import { useFilters } from "@/hooks/useFilters";
 
 type SortByListProps = {
   label: string;

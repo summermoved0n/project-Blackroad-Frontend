@@ -1,15 +1,15 @@
 "use client";
 
-import SearchForm from "../components/SearchForm";
-import Filter from "../components/Filter";
-import { useFilters } from "@/lib/hooks/useFilters";
-import { toursListData } from "@/lib/data/toursPageData";
-import ToursPagination from "./ToursPagination";
-import ToursList from "./ToursList";
 import SortBy from "./SortBy";
 import SearchFormMobile from "./SearchFormMobile";
 import { useState } from "react";
 import { DateRange } from "react-day-picker";
+import SearchForm from "@/components/SearchForm";
+import Filter from "@/components/Filter";
+import { toursListData } from "@/lib/data/toursPageData";
+import { useFilters } from "@/hooks/useFilters";
+import ToursList from "../(public)/tours/ToursList";
+import ToursPagination from "../(public)/tours/ToursPagination";
 
 const toursPerPage = 4;
 const totalPages = Math.ceil(toursListData.length / toursPerPage);

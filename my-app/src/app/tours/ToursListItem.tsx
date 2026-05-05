@@ -1,11 +1,11 @@
 "use client";
 
 import clsx from "clsx";
-import { EmptyHeartIcon } from "@/lib/icons/EmptyHeartIcon";
 import Image from "next/image";
-import { Text } from "../components/Text";
-import ReviewStars from "../components/ReviewStars";
-import ButtonWithArrow from "../components/ButtonWithArrow";
+import { Text } from "@/components/Text";
+import ReviewStars from "@/components/ReviewStars";
+import ButtonWithArrow from "@/components/ButtonWithArrow";
+import { EmptyHeartIcon } from "@/components/icons/EmptyHeartIcon";
 
 type ToursListItemProps = {
   itemData: {
@@ -24,7 +24,7 @@ export default function ToursListItem({ itemData }: ToursListItemProps) {
 
   return (
     <li key={id} id={id.toString()} className="w-full h-fit bg-[#171717]">
-      <div className="relative w-full h-[400px]">
+      <div className="relative w-full h-100">
         <Text
           as="p"
           color="white"

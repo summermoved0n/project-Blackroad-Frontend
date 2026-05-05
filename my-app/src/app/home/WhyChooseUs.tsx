@@ -1,5 +1,5 @@
+import { Text } from "@/components/Text";
 import { dataOfCustomers } from "@/lib/data/homePageData";
-import { Text } from "../components/Text";
 
 export default function WhyChooseUs() {
   return (

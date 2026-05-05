@@ -1,7 +1,7 @@
-import { Text } from "@/app/components/Text";
 import ToursTable from "./ToursTable";
-import { toursDatesData } from "@/lib/data/toursPageData";
 import ToursTabelMobile from "./ToursTabelMobile";
+import { Text } from "@/components/Text";
+import { toursDatesData } from "@/lib/data/toursPageData";
 
 export default function TourDates() {
   return (

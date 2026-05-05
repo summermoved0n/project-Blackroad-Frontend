@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronRightIcon } from "@/lib/icons/ChevronRightIcon";
-import { formatPathname } from "@/lib/utility/helpers";
 import { usePathname } from "next/navigation";
-import { Text } from "../components/Text";
+import { Text } from "@/components/Text";
+import { ChevronRightIcon } from "@/components/icons/ChevronRightIcon";
+import { formatPathname } from "@/lib/utility/helpers";
 
 export default function ToursHero() {
   const searchPathname = usePathname();

@@ -1,10 +1,11 @@
 'use client";';
 
-import { Button } from "@/app/components/Button";
-import ReviewStars from "@/app/components/ReviewStars";
-import { Text } from "@/app/components/Text";
-import { ChevronRightIcon } from "@/lib/icons/ChevronRightIcon";
-import { EmptyHeartIcon } from "@/lib/icons/EmptyHeartIcon";
+
+import { Button } from "@/components/Button";
+import { ChevronRightIcon } from "@/components/icons/ChevronRightIcon";
+import { EmptyHeartIcon } from "@/components/icons/EmptyHeartIcon";
+import ReviewStars from "@/components/ReviewStars";
+import { Text } from "@/components/Text";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 

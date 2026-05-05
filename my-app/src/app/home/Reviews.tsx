@@ -1,7 +1,7 @@
-import { reviewsData } from "@/lib/data/homePageData";
-import { Text } from "../components/Text";
+import { Text } from "@/components/Text";
 import ReviewsItem from "./ReviewsItem";
 import clsx from "clsx";
+import { reviewsData } from "@/lib/data/homePageData";
 
 export default function Reviews({ isDark }: { isDark?: boolean }) {
   return (

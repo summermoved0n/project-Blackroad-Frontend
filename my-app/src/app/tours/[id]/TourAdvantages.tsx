@@ -1,8 +1,8 @@
-import { Text } from "@/app/components/Text";
-import { AnimalsIcon } from "@/lib/icons/AnimalsIcon";
-import { HouseIcon } from "@/lib/icons/HouseIcon";
-import { MountainIcon } from "@/lib/icons/MountainIcon";
-import { NatureIcon } from "@/lib/icons/NatureIcon";
+import { AnimalsIcon } from "@/components/icons/AnimalsIcon";
+import { HouseIcon } from "@/components/icons/HouseIcon";
+import { MountainIcon } from "@/components/icons/MountainIcon";
+import { NatureIcon } from "@/components/icons/NatureIcon";
+import { Text } from "@/components/Text";
 
 export default function TourAdvantages() {
   return (

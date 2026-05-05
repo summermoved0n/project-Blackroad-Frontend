@@ -1,12 +1,12 @@
-import ExploreWithUs from "./home/ExploreWithUs";
-import FAQ from "./home/FAQ";
-import FeelComfort from "./home/FeelComfort";
-import HomeHero from "./home/HomeHero";
-import KeepInTouch from "./home/KeepInTouch";
-import PopularTours from "./home/PopularTours";
-import Reviews from "./home/Reviews";
-import TravelWithUs from "./home/TravelWithUs";
-import WhyChooseUs from "./home/WhyChooseUs";
+import ExploreWithUs from "./(public)/home/ExploreWithUs";
+import FAQ from "./(public)/home/FAQ";
+import FeelComfort from "./(public)/home/FeelComfort";
+import HomeHero from "./(public)/home/HomeHero";
+import KeepInTouch from "./(public)/home/KeepInTouch";
+import PopularTours from "./(public)/home/PopularTours";
+import Reviews from "./(public)/home/Reviews";
+import TravelWithUs from "./(public)/home/TravelWithUs";
+import WhyChooseUs from "./(public)/home/WhyChooseUs";
 
 export default function Home() {
   return (

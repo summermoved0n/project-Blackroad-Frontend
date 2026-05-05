@@ -1,9 +1,9 @@
 "use client";
 
-import { PlusIcon } from "@/lib/icons/PlusIcon";
 import { useState } from "react";
-import { MinusIcon } from "@/lib/icons/MinusIcon";
-import { Text } from "../components/Text";
+import { Text } from "@/components/Text";
+import { PlusIcon } from "@/components/icons/PlusIcon";
+import { MinusIcon } from "@/components/icons/MinusIcon";
 
 type FAQItemProps = { question: string; description: string };
 

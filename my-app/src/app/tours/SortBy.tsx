@@ -1,16 +1,16 @@
 "use client";
 
-import { ArrowDownIcon } from "@/lib/icons/ArrowDownIcon";
-import { Text } from "../components/Text";
-import { Button } from "../components/Button";
-import { FilterIcon } from "@/lib/icons/FilterIcon";
-import { ArrowUpDownIcon } from "@/lib/icons/ArrowUpDownIcon";
-import Modal from "../components/Modal";
 import { useRef, useState } from "react";
-import Filter from "../components/Filter";
 import SortByList from "./SortByList";
-import { useClickOutside } from "@/lib/hooks/useClickOutside";
 import { sortOptions } from "@/lib/data/toursPageData";
+import { Text } from "@/components/Text";
+import { Button } from "@/components/Button";
+import Modal from "@/components/Modal";
+import Filter from "@/components/Filter";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { ArrowDownIcon } from "@/components/icons/ArrowDownIcon";
+import { FilterIcon } from "@/components/icons/FilterIcon";
+import { ArrowUpDownIcon } from "@/components/icons/ArrowUpDownIcon";
 
 export default function SortBy() {
   const containerRef = useRef<HTMLDivElement>(null);

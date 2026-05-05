@@ -1,7 +1,7 @@
-import { Button } from "@/app/components/Button";
-import ButtonWithArrow from "@/app/components/ButtonWithArrow";
-import { Text } from "@/app/components/Text";
-import { ArrowRightIcon } from "@/lib/icons/ArrowRightIcon";
+import { Button } from "@/components/Button";
+import ButtonWithArrow from "@/components/ButtonWithArrow";
+import { ArrowRightIcon } from "@/components/icons/ArrowRightIcon";
+import { Text } from "@/components/Text";
 import Image from "next/image";
 
 export default function TourSchedule() {

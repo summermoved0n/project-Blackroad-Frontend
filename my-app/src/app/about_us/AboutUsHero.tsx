@@ -1,11 +1,11 @@
 "use client";
 
+import { ChevronRightIcon } from "@/components/icons/ChevronRightIcon";
+import { Text } from "@/components/Text";
+import { formatPathname } from "@/lib/utility/helpers";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-import { formatPathname } from "@/lib/utility/helpers";
-import { ChevronRightIcon } from "@/lib/icons/ChevronRightIcon";
-import { Text } from "../components/Text";
 
 export default function AboutUsHero() {
   const searchPathname = usePathname();

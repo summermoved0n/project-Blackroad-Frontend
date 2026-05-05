@@ -1,9 +1,9 @@
 "use client";
 
-import { Text } from "@/app/components/Text";
+import { ArrowDownIcon } from "@/components/icons/ArrowDownIcon";
+import { ChevronRightIcon } from "@/components/icons/ChevronRightIcon";
+import { Text } from "@/components/Text";
 import { cancellationPolicy } from "@/lib/data/toursPageData";
-import { ArrowDownIcon } from "@/lib/icons/ArrowDownIcon";
-import { ChevronRightIcon } from "@/lib/icons/ChevronRightIcon";
 import { clsx } from "clsx";
 import { useState } from "react";
 

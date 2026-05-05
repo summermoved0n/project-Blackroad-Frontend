@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { ArrowRightIcon } from "@/lib/icons/ArrowRightIcon";
-import { Text } from "../components/Text";
-import ButtonWithArrow from "../components/ButtonWithArrow";
-import { Button } from "../components/Button";
+import { Text } from "@/components/Text";
+import ButtonWithArrow from "@/components/ButtonWithArrow";
+import { Button } from "@/components/Button";
+import { ArrowRightIcon } from "@/components/icons/ArrowRightIcon";
 
 export default function FeelComfort() {
   return (

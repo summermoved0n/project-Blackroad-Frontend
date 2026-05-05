@@ -1,5 +1,5 @@
+import { Text } from "@/components/Text";
 import Image from "next/image";
-import { Text } from "../components/Text";
 
 export default function AboutUsFirstSection() {
   return (

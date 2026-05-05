@@ -1,10 +1,10 @@
 "use client";
 
+import { Button } from "@/components/Button";
+import SearchForm from "@/components/SearchForm";
+import { Text } from "@/components/Text";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Text } from "../components/Text";
-import { Button } from "../components/Button";
-import SearchForm from "../components/SearchForm";
 import { useState } from "react";
 import { DateRange } from "react-day-picker";
 
@@ -14,7 +14,7 @@ export default function HomeHero() {
   const router = useRouter();
 
   return (
-    <div className="relative w-full h-screen px-4 lg:px-35 h-180 flex flex-col justify-center items-center gap-7.5">
+    <div className="relative w-full h-screen px-4 lg:px-35 flex flex-col justify-center items-center gap-7.5">
       <Image
         src="/images/Home_hero.jpg"
         alt="Trees and mountains"

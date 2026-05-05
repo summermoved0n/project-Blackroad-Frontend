@@ -1,6 +1,6 @@
+import { Button } from "@/components/Button";
+import { Text } from "@/components/Text";
 import Image from "next/image";
-import { Text } from "../components/Text";
-import { Button } from "../components/Button";
 
 export default function KeepInTouch() {
   return (
@@ -14,7 +14,7 @@ export default function KeepInTouch() {
         news.
       </Text>
 
-      <div className="flex flex-col w-full w-200 md:flex-row md:justify-center gap-7.5 md:gap-2.5">
+      <div className="flex flex-col w-full md:flex-row md:justify-center gap-7.5 md:gap-2.5">
         <input
           type="email"
           placeholder="Enter email"

@@ -1,6 +1,6 @@
-import { InstagramIcon } from "@/lib/icons/InstagramIcon";
-import ReviewStars from "../components/ReviewStars";
-import { Text } from "../components/Text";
+import { InstagramIcon } from "@/components/icons/InstagramIcon";
+import ReviewStars from "@/components/ReviewStars";
+import { Text } from "@/components/Text";
 import clsx from "clsx";
 
 type ReviewsItemProps = {
@@ -19,9 +19,9 @@ export default function ReviewsItem({
   return (
     <li
       className={clsx(
-        "flex flex-col items-center justify-between gap-7.5 md:gap-10 py-12.5 px-5 border border-l-0 border-r-0 md:border-l-1 md:border-r-1  border-[rgba(23,23,23,0.1)]",
+        "flex flex-col items-center justify-between gap-7.5 md:gap-10 py-12.5 px-5 border border-l-0 border-r-0 md:border-l md:border-r  border-[rgba(23,23,23,0.1)]",
 
-        "first:border-b-0 last:border-t-0 md:first:border-b-1 md:last:border-t-1 md:first:border-l-0 md:first:border-r-0 md:last:border-r-0 md:last:border-l-0",
+        "first:border-b-0 last:border-t-0 md:first:border-b md:last:border-t md:first:border-l-0 md:first:border-r-0 md:last:border-r-0 md:last:border-l-0",
 
         isDark && "border-white/20",
       )}

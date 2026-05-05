@@ -1,7 +1,7 @@
 import { faqData } from "@/lib/data/homePageData";
 import Link from "next/link";
-import { Text } from "../components/Text";
 import FAQItem from "./FAQItem";
+import { Text } from "@/components/Text";
 
 export default function FAQ() {
   return (
@@ -15,7 +15,7 @@ export default function FAQ() {
           <FAQItem key={id} question={question} description={description} />
         ))}
 
-        <li className="border-t-1 border-black/10 pt-7.5 ">
+        <li className="border-t border-black/10 pt-7.5 ">
           <Link href="/faq" className="w-fit">
             <Text as="h3" color="black50" size="sm">
               All questions
