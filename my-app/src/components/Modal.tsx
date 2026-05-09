@@ -2,6 +2,7 @@
 
 import { CrossIcon } from "@/components/icons/CrossIcon";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -16,6 +17,7 @@ export default function Modal({
   openModal,
   setOpenModal,
 }: ModalProps) {
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -62,7 +64,9 @@ export default function Modal({
       <div className="perspective-[1000px] relative w-full h-full flex items-center justify-center cursor-pointer">
         <button
           className="absolute z-10 top-10 right-10 hover:scale-125 transition"
-          onClick={() => setOpenModal(false)}
+          onClick={() => {
+            (setOpenModal(false), router.back());
+          }}
         >
           <CrossIcon />
         </button>

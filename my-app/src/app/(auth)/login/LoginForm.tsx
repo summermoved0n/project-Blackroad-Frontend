@@ -1,35 +1,35 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+// import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import axios from "axios";
 
 export default function LoginForm() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  console.log("cookie", document.cookie);
-  const from = searchParams.get("from") || "/";
+  // const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
-    document.cookie = `token=123; path=/`;
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    router.push(from);
+    const formData = { email, password };
+    await axios.post("/api/auth/login", formData);
   };
 
   return (
-    <div className="pt-50 flex flex-col gap-4 p-4">
+    <form onSubmit={handleLogin} className="pt-20 flex flex-col gap-4">
       <h1 className="text-white">Login</h1>
 
       <input
-        className="border border-amber-200"
+        className="border border-amber-200 text-white"
         placeholder="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
 
       <input
-        className="border border-amber-200"
+        className="border border-amber-200 text-white"
         placeholder="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
@@ -37,10 +37,10 @@ export default function LoginForm() {
 
       <button
         className="bg-amber-500 text-white py-2 px-4 rounded"
-        onClick={handleLogin}
+        type="submit"
       >
         Login
       </button>
-    </div>
+    </form>
   );
 }

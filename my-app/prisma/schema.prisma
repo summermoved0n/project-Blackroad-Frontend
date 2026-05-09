@@ -13,11 +13,15 @@ datasource db {
 }
 
 model User { 
-  id    Int     @id @default(autoincrement()) 
-  email String  @unique
-  name  String?
+  id        Int     @id @default(autoincrement()) 
+  email     String  @unique
+  password  String  
+  name      String?
   posts Post[]
+
+  @@map("users")
 } 
+
 model Post { 
   id        Int     @id @default(autoincrement()) 
   title     String
@@ -25,4 +29,6 @@ model Post {
   published Boolean @default(false) 
   author    User    @relation(fields: [authorId], references: [id]) 
   authorId  Int
+
+  @@map("posts")
 } 

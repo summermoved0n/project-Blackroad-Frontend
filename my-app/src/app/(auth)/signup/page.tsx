@@ -1,7 +1,10 @@
-import React from 'react'
+import { Suspense } from "react";
+import Signup from "./Signup";
 
 export default function page() {
   return (
-    <div>page</div>
-  )
+    <Suspense fallback={null}>
+      <Signup />
+    </Suspense>
+  );
 }

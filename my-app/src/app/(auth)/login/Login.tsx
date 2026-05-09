@@ -1,36 +1,35 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import React from "react";
+import { useRouter } from "next/navigation";
 import LoginForm from "./LoginForm";
 import Modal from "@/components/Modal";
 
 export default function Login() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const from = searchParams.get("from") || "/";
-  console.log("from", from);
-  const [openModal, setOpenModal] = React.useState(true);
 
-  useEffect(() => {
-    if (!openModal) {
-      router.push(from);
-    }
-  }, [openModal, from, router]);
+  const [openModal, setOpenModal] = React.useState(true);
 
   return (
     <section>
       <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        <LoginForm />
-        <button
-          className="text-white"
-          onClick={() => {
-            ((document.cookie = "token=; max-age=0; path=/"),
-              setOpenModal(false));
-          }}
-        >
-          Close
-        </button>
+        <div className="p-4">
+          <div className="pt-50">
+            <p className="text-white">GLAD TO WELCOME YOU AGAIN!</p>
+            <p className="text-white">
+              Don`t have an account?{" "}
+              <button
+                type="button"
+                onClick={() => {
+                  router.push("/signup");
+                }}
+              >
+                Register
+              </button>
+            </p>
+          </div>
+          <LoginForm />
+        </div>
       </Modal>
     </section>
   );
