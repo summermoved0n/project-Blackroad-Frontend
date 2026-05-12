@@ -1,20 +1,27 @@
 "use client";
 
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import axios from "axios";
 
 export default function LoginForm() {
-  // const router = useRouter();
+  const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    const formData = { email, password };
-    await axios.post("/api/auth/login", formData);
+      const formData = { email, password };
+      await axios.post("/api/auth/login", formData);
+
+      router.push("/tours");
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

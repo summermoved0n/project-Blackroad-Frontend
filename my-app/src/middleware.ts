@@ -6,6 +6,7 @@ export function middleware(req: NextRequest) {
   const isAuthPage = req.nextUrl.pathname.startsWith("/login");
 
   const isProtectedRoute =
+    req.nextUrl.pathname.startsWith("/profile") ||
     req.nextUrl.pathname.startsWith("/build-tour") ||
     req.nextUrl.pathname.includes("/booking");
 
@@ -23,5 +24,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/build-tour", "/tours/:path*/booking"],
+  matcher: ["/build-tour", "/tours/:path*/booking", "/profile"],
 };

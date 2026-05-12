@@ -1,16 +1,20 @@
 "use client";
 
-import Logo from "./Logo";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { MenuBurgerIcon } from "@/components/icons/MenuBurgerIcon";
+import { useRouter } from "next/navigation";
 import clsx from "clsx";
+import Link from "next/link";
+import Logo from "./Logo";
+import { MenuBurgerIcon } from "@/components/icons/MenuBurgerIcon";
 import { CrossIcon } from "@/components/icons/CrossIcon";
 import Navigation from "./Navigation";
 import { Text } from "./Text";
-import { useRouter } from "next/navigation";
 
-export default function Header() {
+type HeaderProps = {
+  isAuth: boolean;
+};
+
+export default function Header({ isAuth }: HeaderProps) {
   const router = useRouter();
   const [openDropMenu, setOpenDropMenu] = useState(false);
 
@@ -56,12 +60,21 @@ export default function Header() {
       </div>
       <p className="hidden md:block">Fr / En</p>
       <Logo onClose={setOpenDropMenu} />
-      <button
-        className="hover:text-orange-200 transition"
-        onClick={() => router.push("/login")}
-      >
-        Log in
-      </button>
+      {isAuth ? (
+        <button
+          className="hover:text-orange-200 transition"
+          onClick={() => router.push("/profile")}
+        >
+          My Profile
+        </button>
+      ) : (
+        <button
+          className="hover:text-orange-200 transition"
+          onClick={() => router.push("/login")}
+        >
+          Log in
+        </button>
+      )}
       <Link
         href="/build-tour"
         className="hidden md:flex border-l border-white/10 h-20 px-17.5  items-center group"
