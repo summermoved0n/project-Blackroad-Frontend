@@ -62,14 +62,14 @@ export default function Header({ isAuth }: HeaderProps) {
       <Logo onClose={setOpenDropMenu} />
       {isAuth ? (
         <button
-          className="hover:text-orange-200 transition"
+          className="hover:text-orange-300 transition"
           onClick={() => router.push("/profile")}
         >
           My Profile
         </button>
       ) : (
         <button
-          className="hover:text-orange-200 transition"
+          className="hover:text-orange-300 transition"
           onClick={() => router.push("/login")}
         >
           Log in
