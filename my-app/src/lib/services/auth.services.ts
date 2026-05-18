@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import {
   dbCreateUser,
   dbFindUser,
+  dbUpdateUser,
   validatePassword,
 } from "../repositories/auth.repo";
 import { resend } from "../resend";
@@ -19,8 +20,12 @@ type LogInUserProps = {
   password: string;
 };
 
+type VerificationTokenProps = {
+  verificationToken: string;
+};
+
 export const signUpUser = async ({ email, password }: SignUpUserProps) => {
-  const existedUser = await dbFindUser({ filter: email });
+  const existedUser = await dbFindUser({ email });
 
   if (existedUser) {
     throw new Error("Email in use");
@@ -39,7 +44,7 @@ export const signUpUser = async ({ email, password }: SignUpUserProps) => {
 };
 
 export const logInUser = async ({ email, password }: LogInUserProps) => {
-  const existedUser = await dbFindUser({ filter: email });
+  const existedUser = await dbFindUser({ email });
 
   if (!existedUser) {
     throw new Error("Email or password not valid");
@@ -57,4 +62,19 @@ export const logInUser = async ({ email, password }: LogInUserProps) => {
   if (!comparePassword) {
     throw new Error("Email or password not valid");
   }
+};
+
+export const userVerify = async ({
+  verificationToken,
+}: VerificationTokenProps) => {
+  const user = await dbFindUser({ verificationToken });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  await dbUpdateUser({
+    filter: { id: user.id },
+    data: { isVerify: true, verificationToken: "" },
+  });
 };

@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import { prisma } from "../prisma";
+import { UserWhereUniqueInput } from "../../../generated/prisma/models";
 
 type dbCreateUserProps = {
   email: string;
@@ -8,15 +9,18 @@ type dbCreateUserProps = {
 };
 
 type dbUpdateUserProps = {
-  filter: { email: string };
-  data: { name?: string; password?: string };
+  filter: UserWhereUniqueInput;
+  data: {
+    name?: string;
+    password?: string;
+    isVerify?: boolean;
+    verificationToken?: string;
+  };
 };
 
-export const dbFindUser = async ({ filter }: { filter: string }) => {
+export const dbFindUser = async (filter: UserWhereUniqueInput) => {
   return prisma.user.findUnique({
-    where: {
-      email: filter,
-    },
+    where: filter,
   });
 };
 

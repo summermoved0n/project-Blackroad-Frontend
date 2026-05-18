@@ -1,11 +1,11 @@
 "use client";
 
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import axios from "axios";
 
 export default function SignupForm() {
-  // const router = useRouter();
+  const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +16,8 @@ export default function SignupForm() {
 
     const formData = { email, password, confirmPassword };
     await axios.post("/api/auth/signup", formData);
+    router.replace("/");
+    router.refresh();
   };
 
   return (

@@ -7,7 +7,7 @@ export interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="pt-20 bg-[#171717]">
+    <div className="pt-17 md:pt-20 bg-[#171717]">
       <main className="bg-[#1e1e1f] pt-6.5 pb-37.5 px-20">
         <AccountHeader />
         <div className="">{children}</div>
