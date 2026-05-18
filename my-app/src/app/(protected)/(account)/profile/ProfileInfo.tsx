@@ -19,7 +19,7 @@ type User = {
 export default function ProfileInfo({ user }: User) {
   return (
     <div className="bg-[#171717] p-15">
-      <Text as="h2" color="white" size="lg" className="mb-12.5">
+      <Text as="h2" color="white" size="lg" className="mb-12.5 uppercase">
         My information
       </Text>
 

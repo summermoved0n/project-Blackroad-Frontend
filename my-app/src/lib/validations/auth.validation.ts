@@ -16,5 +16,17 @@ export const loginValidationSchema = z.object({
   password: z.string().min(1, "Password is required"),
 });
 
+export const changePassValidationSchema = z
+  .object({
+    password: z.string().min(6, "Password is required"),
+    newPassword: z.string().min(6, "Password is required"),
+    confirmNewPassword: z.string(),
+  })
+  .refine((data) => data.newPassword === data.confirmNewPassword, {
+    message: "Passwords do not match",
+    path: ["confirmNewPassword"],
+  });
+
 export type SignupSchema = z.infer<typeof signupValidationSchema>;
 export type LoginSchema = z.infer<typeof loginValidationSchema>;
+export type ChangePasswordSchema = z.infer<typeof changePassValidationSchema>;
