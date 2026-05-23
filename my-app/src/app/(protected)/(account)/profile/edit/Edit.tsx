@@ -32,10 +32,9 @@ export default function LoginForm() {
 
   const onSubmit = async (data: EditUserInfoSchema) => {
     try {
-      console.log(data);
       const response = await axios.post("/api/auth/user-update", data);
-      // router.replace("/tours");
-      // router.refresh();
+      router.replace("/profile");
+      router.refresh();
       toast.success(response.data.message);
     } catch (error) {
       handleApiError(error);
