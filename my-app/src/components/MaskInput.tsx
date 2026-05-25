@@ -12,6 +12,7 @@ type InputProps = {
   mask: string;
   error?: FieldError;
   value: string;
+  darkThemeInput?: boolean;
   onChange: (value: string) => void;
 };
 
@@ -24,10 +25,14 @@ export default function MaskInput({
   idName,
   error,
   placeholder,
+  darkThemeInput,
 }: InputProps) {
   return (
     <div>
-      <label className="text-white" htmlFor={idName}>
+      <label
+        className={darkThemeInput ? "text-white/60" : "text-white"}
+        htmlFor={idName}
+      >
         {lable}
       </label>
       <IMaskInput
@@ -39,6 +44,7 @@ export default function MaskInput({
         placeholder={placeholder}
         className={clsx(
           className,
+          darkThemeInput && "placeholder:text-white/20",
           "w-full border-b border-white/10 focus:border-[#ea9c3f] text-white py-3 outline-none",
         )}
       />

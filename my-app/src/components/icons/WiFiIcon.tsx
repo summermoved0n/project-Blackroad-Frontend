@@ -10,9 +10,9 @@ export const WiFiIcon = () => {
       <path
         d="M12 19.51L12.01 19.499M2 8C8 3.5 16 3.5 22 8M5 12C9 9 15 9 19 12M8.5 15.5C10.75 14.1 13.25 14.1 15.5 15.5"
         stroke="white"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

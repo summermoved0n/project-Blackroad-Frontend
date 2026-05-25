@@ -96,7 +96,7 @@ export const editUserInfoSchema = z
       message: "At least one field must be filled",
       path: ["root"],
     },
-  );
+);
 
 export type SignupSchema = z.infer<typeof signupValidationSchema>;
 export type LoginSchema = z.infer<typeof loginValidationSchema>;

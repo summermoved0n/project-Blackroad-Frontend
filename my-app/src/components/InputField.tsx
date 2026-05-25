@@ -14,6 +14,7 @@ type Props<T extends FieldValues> = {
   register: UseFormRegister<T>;
   error?: FieldError;
   className?: string;
+  darkThemeInput?: boolean;
 };
 
 export default function InputField<T extends FieldValues>({
@@ -23,17 +24,24 @@ export default function InputField<T extends FieldValues>({
   placeholder = "email@gmail.com",
   register,
   error,
+  darkThemeInput,
   className,
 }: Props<T>) {
   return (
-    <div className="text-white flex flex-col">
-      <label htmlFor={name}>{lable}</label>
+    <div className="flex flex-col">
+      <label
+        className={darkThemeInput ? "text-white/60" : "text-white "}
+        htmlFor={name}
+      >
+        {lable}
+      </label>
 
       <input
         id={name}
         {...register(name)}
         className={clsx(
           className,
+          darkThemeInput && "placeholder:text-white/20",
           "border-b border-white/10 focus:border-[#ea9c3f] text-white py-3 outline-none",
         )}
         placeholder={placeholder}
