@@ -69,8 +69,6 @@ export const createBooking = async (data: BookingDataProps) => {
     guestArrivalTime: additional.guestArrivalTime ?? null,
   });
 
-  console.log("I reached this field");
-
   await dbCreateBooking({
     userId: user.id,
     tourId: tour.id,
