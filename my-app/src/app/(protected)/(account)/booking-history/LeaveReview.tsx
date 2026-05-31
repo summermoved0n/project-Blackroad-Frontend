@@ -1,20 +1,41 @@
+"use client";
+
 import { Button } from "@/components/Button";
-import { EmptyHeartIcon, EmptyStarIcon } from "@/components/icons";
+import { EmptyStarIcon } from "@/components/icons";
 import { CrossGreyIcon } from "@/components/icons/CrossGreyIcon";
 import { Text } from "@/components/Text";
+import { handleApiError } from "@/lib/utility/handleApiError";
+import axios from "axios";
+import { useRouter } from "next/dist/client/components/navigation";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 type LeaveReviewProps = {
+  tourId: number;
   setMenuItem: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-export default function LeaveReview({ setMenuItem }: LeaveReviewProps) {
+export default function LeaveReview({ tourId, setMenuItem }: LeaveReviewProps) {
+  const router = useRouter();
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Handle form submission logic here
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      const payload = {
+        tourId,
+        review,
+        rating,
+      };
+
+      const response = await axios.post("/api/profile/review", payload);
+      toast.success(response.data.message);
+      setMenuItem(null);
+      router.refresh();
+    } catch (error) {
+      handleApiError(error);
+    }
   };
 
   return (
@@ -29,11 +50,16 @@ export default function LeaveReview({ setMenuItem }: LeaveReviewProps) {
         </button>
       </div>
       <div className="flex gap-1 mt-4">
-        <EmptyStarIcon />
-        <EmptyStarIcon />
-        <EmptyStarIcon />
-        <EmptyStarIcon />
-        <EmptyStarIcon />
+        {[1, 2, 3, 4, 5].map((star) => (
+          <button
+            key={star}
+            type="button"
+            onClick={() => setRating(star)}
+            className="focus:outline-none"
+          >
+            {rating >= star ? <EmptyStarIcon filled /> : <EmptyStarIcon />}
+          </button>
+        ))}
       </div>
       <form onSubmit={onSubmit} className="mt-4 space-y-4">
         <label
@@ -46,7 +72,7 @@ export default function LeaveReview({ setMenuItem }: LeaveReviewProps) {
             placeholder="Describe your experience"
             value={review}
             onChange={(e) => setReview(e.target.value)}
-            className="border-b border-[#d0d0d0]/70 outline-0 py-3 mb-5 focus:border-orange-300 w-full"
+            className="border-b border-[#d0d0d0]/70 outline-0 py-3 mb-5 focus:border-orange-300 w-full text-lg"
           />
         </label>
 

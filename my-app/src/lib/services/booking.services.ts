@@ -1,10 +1,10 @@
 import { BookingStatus, RoomType } from "../../../generated/prisma/enums";
 import { dbFindUser } from "../repositories/auth.repo";
+import { dbCreateCustomer } from "../repositories/booking-customer.repo";
 import {
-  dbCreateCustomer,
-  dbFindCustomerSnapshot,
-} from "../repositories/booking-customer.repo";
-import { dbCreateBooking } from "../repositories/booking.repo";
+  dbCreateBooking,
+  dbFindBookingByFilter,
+} from "../repositories/booking.repo";
 import { dbFindTour } from "../repositories/tour.repo";
 import { getCurrentUser } from "../utility/getCurrentUser";
 
@@ -47,15 +47,26 @@ export const createBooking = async (data: BookingDataProps) => {
     throw new Error("Tour not found");
   }
 
-  const { customerInfo, contactDetails, additional } = data;
-
-  const existedCustomerSnapshot = await dbFindCustomerSnapshot({
-    email: customerInfo.email,
+  const isThisBookingExist = await dbFindBookingByFilter({
+    userId: user.id,
+    tourId: tour.id,
   });
 
-  if (existedCustomerSnapshot) {
-    throw new Error("Email already in use");
+  console.log(isThisBookingExist);
+
+  if (
+    isThisBookingExist &&
+    isThisBookingExist?.status !== BookingStatus.completed &&
+    isThisBookingExist?.status !== BookingStatus.cancelled
+  ) {
+    throw new Error(
+      "You have already made a booking tour with this email. Please check your email for details or contact support.",
+    );
   }
+
+  const { customerInfo, contactDetails, additional } = data;
+
+  console.log("Creating new Customer...");
 
   const newCustomer = await dbCreateCustomer({
     email: customerInfo.email,
@@ -68,6 +79,8 @@ export const createBooking = async (data: BookingDataProps) => {
     specialWishes: additional.specialWishes ?? null,
     guestArrivalTime: additional.guestArrivalTime ?? null,
   });
+
+  console.log("Creating new booking...");
 
   await dbCreateBooking({
     userId: user.id,

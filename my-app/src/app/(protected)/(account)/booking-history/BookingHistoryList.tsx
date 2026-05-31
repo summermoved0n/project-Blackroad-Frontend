@@ -1,23 +1,19 @@
 import { Text } from "@/components/Text";
-import { Decimal } from "../../../../../generated/prisma/internal/prismaNamespace";
-import { BookingStatus } from "../../../../../generated/prisma/client";
 import BookingHistoryItem from "./BookingHistoryItem";
+import {
+  TourListHistoryPayload,
+  UserReviewPayload,
+} from "@/types/profile.types";
 
 type BookingHistoryListProps = {
-  tourList: {
-    id: number;
-    totalPrice: Decimal;
-    status: BookingStatus;
-    tour: {
-      title: string;
-      imageUrl: string;
-      dateOfArrival: Date;
-      dateOfDeparture: Date;
-    };
-  }[];
+  userId: number;
+  tourList: TourListHistoryPayload[];
+  userReviews: UserReviewPayload[];
 };
 
 export default function BookingHistoryList({
+  userReviews,
+  userId,
   tourList,
 }: BookingHistoryListProps) {
   return (
@@ -29,7 +25,10 @@ export default function BookingHistoryList({
       <ul className="flex flex-col gap-10">
         {tourList.map(({ id, totalPrice, tour, status }) => (
           <BookingHistoryItem
-            key={id}
+            key={tour.id}
+            userId={userId}
+            bookingId={id}
+            userReviews={userReviews}
             totalPrice={totalPrice.toString()}
             tour={tour}
             status={status}

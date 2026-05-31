@@ -7,27 +7,33 @@ import { clsx } from "clsx";
 import { capitalizeFirstLetter } from "@/lib/utility/helpers";
 import DotButtonMenu, { MenuItem } from "./DotButtonMenu";
 import { useState } from "react";
-import BookingAgain from "./BookingAgain";
 import LeaveReview from "./LeaveReview";
 import CancelBooking from "./CancelBooking";
+import { UserReviewPayload } from "@/types/profile.types";
 
 type BookingHistoryItemProps = {
+  userId: number;
+  bookingId: number;
   totalPrice: string;
   status: BookingStatus;
   tour: {
+    id: number;
     title: string;
     imageUrl: string;
     dateOfArrival: Date;
     dateOfDeparture: Date;
   };
+  userReviews: UserReviewPayload[];
 };
 
 export default function BookingHistoryItem({
+  bookingId,
+  userReviews,
+  userId,
   totalPrice,
   tour,
   status,
 }: BookingHistoryItemProps) {
-  
   const [menuItem, setMenuItem] = useState<string | null>(null);
 
   return (
@@ -80,19 +86,29 @@ export default function BookingHistoryItem({
               {totalPrice} CA$
             </Text>
 
-            <DotButtonMenu setMenuItem={setMenuItem} />
+            <DotButtonMenu
+              userId={userId}
+              tourId={tour.id}
+              userReviews={userReviews}
+              setMenuItem={setMenuItem}
+            />
           </div>
         </div>
       </li>
 
-      {menuItem === MenuItem.BookingAgain && (
-        <BookingAgain key={MenuItem.BookingAgain} />
-      )}
       {menuItem === MenuItem.LeaveReview && (
-        <LeaveReview key={MenuItem.LeaveReview} setMenuItem={setMenuItem} />
+        <LeaveReview
+          key={MenuItem.LeaveReview}
+          tourId={tour.id}
+          setMenuItem={setMenuItem}
+        />
       )}
       {menuItem === MenuItem.CancelBooking && (
-        <CancelBooking key={MenuItem.CancelBooking} />
+        <CancelBooking
+          key={MenuItem.CancelBooking}
+          bookingId={bookingId}
+          setMenuItem={setMenuItem}
+        />
       )}
     </>
   );

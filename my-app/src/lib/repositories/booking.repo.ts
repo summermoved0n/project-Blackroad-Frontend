@@ -11,6 +11,19 @@ type CreateBookingProps = {
   status: BookingStatus;
 };
 
+export const dbFindBookingById = async (id: number) =>
+  prisma.booking.findUnique({
+    where: { id },
+  });
+
+export const dbFindBookingByFilter = async (filter: {
+  userId: number;
+  tourId: number;
+}) =>
+  prisma.booking.findFirst({
+    where: filter,
+  });
+
 export const dbCreateBooking = async (data: CreateBookingProps) =>
   prisma.booking.create({ data });
 
@@ -23,6 +36,7 @@ export const dbFindAllUserBookings = async (filter: { userId: number }) =>
       totalPrice: true,
       tour: {
         select: {
+          id: true,
           title: true,
           imageUrl: true,
           dateOfArrival: true,

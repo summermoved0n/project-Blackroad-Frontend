@@ -13,6 +13,7 @@ export * from "./ChevronRightIcon";
 export * from "./CircleIcon";
 export * from "./ClockIcon";
 export * from "./CrossIcon";
+export * from "./CrossGreyIcon";
 export * from "./EmptyHeartIcon";
 export * from "./EmptyStarIcon";
 export * from "./ErrorIcon";
