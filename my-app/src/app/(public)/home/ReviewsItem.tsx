@@ -1,5 +1,6 @@
 import ReviewStars from "@/components/ReviewStars";
 import { Text } from "@/components/Text";
+import { UserIcon } from "@/components/icons";
 import { InstagramIcon } from "@/components/icons/InstagramIcon";
 import clsx from "clsx";
 
@@ -35,11 +36,11 @@ export default function ReviewsItem({
       >
         {description}
       </Text>
-      <div className="flex justify-center gap-2.5">
+      <div className="flex justify-center items-center gap-2.5">
         <Text as="p" color={isDark ? "white" : "black"} size="sm">
           {author}
         </Text>
-        <InstagramIcon isWhite />
+        <UserIcon />
       </div>
     </li>
   );

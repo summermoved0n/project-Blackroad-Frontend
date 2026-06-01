@@ -7,7 +7,7 @@ type TourCardProps = {
   id: number;
   title: string;
   description: string;
-  image: string;
+  imageUrl: string;
   price: number;
   carouselClassName: string;
 };
@@ -16,7 +16,7 @@ export default function TourCard({
   id,
   title,
   description,
-  image,
+  imageUrl,
   price,
   carouselClassName,
 }: TourCardProps) {
@@ -29,7 +29,7 @@ export default function TourCard({
     >
       <Image
         className="object-cover -z-10 shadow-black/60"
-        src={image}
+        src={imageUrl}
         alt={title}
         fill
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

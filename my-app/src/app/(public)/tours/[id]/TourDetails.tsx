@@ -13,28 +13,15 @@ import Reviews from "@/app/(public)/home/Reviews";
 import TourPolicy from "./TourPolicy";
 import TourOrder from "./TourOrder";
 import TourSchedule from "./TourSchedule";
+import { TourPayload, TourReviewsPayload } from "@/types/tour.types";
 
-type TourDataProps = {
-  tourData: {
-    id: number;
-    category: string;
-    title: string;
-    imageUrl: string;
-    rating: number;
-    price: number;
-    createdAt: Date;
-    updatedAt: Date;
-    description: string;
-    route: string[];
-    tourDates: Date[];
-    duration: number;
-    food: string;
-    dateOfArrival: Date;
-    dateOfDeparture: Date;
-  } | null;
-};
-
-export default function TourDetails({ tourData }: TourDataProps) {
+export default function TourDetails({
+  tourData,
+  tourReviews,
+}: {
+  tourData: TourPayload | null;
+  tourReviews: TourReviewsPayload[];
+}) {
   if (!tourData) {
     notFound();
   }
@@ -50,7 +37,7 @@ export default function TourDetails({ tourData }: TourDataProps) {
         />
         <TourAdvantages />
         <TourSchedule />
-        <Reviews isDark />
+        <Reviews tourReviews={tourReviews} isDark />
         <div className="pt-12.5 md:pt-37.5 flex flex-col gap-5 md:gap-7.5">
           <TourPolicy />
           <TourOrder />

@@ -1,9 +1,23 @@
-import { reviewsData } from "@/lib/data/homePageData";
 import { Text } from "@/components/Text";
 import ReviewsItem from "./ReviewsItem";
 import clsx from "clsx";
 
-export default function Reviews({ isDark }: { isDark?: boolean }) {
+type ReviewsProps = {
+  isDark?: boolean;
+  tourReviews: {
+    id: number;
+    author: {
+      id: number;
+      name: string | null;
+    };
+    rating: number;
+    comment: string;
+    instagram: string | null;
+    tourId: number;
+  }[];
+};
+
+export default function Reviews({ tourReviews, isDark }: ReviewsProps) {
   return (
     <section
       className={clsx(
@@ -21,17 +35,23 @@ export default function Reviews({ isDark }: { isDark?: boolean }) {
         REVIEWS
       </Text>
 
-      <ul className="md:grid md:grid-cols-3">
-        {reviewsData.map(({ id, stars, description, author }) => (
-          <ReviewsItem
-            key={id}
-            stars={stars}
-            description={description}
-            author={author}
-            isDark={isDark}
-          />
-        ))}
-      </ul>
+      {tourReviews.length === 0 ? (
+        <Text as="p" color={isDark ? "white" : "black"} size="md">
+          No reviews yet.
+        </Text>
+      ) : (
+        <ul className="md:grid md:grid-cols-3">
+          {tourReviews.map(({ id, rating, comment, author }) => (
+            <ReviewsItem
+              key={id}
+              stars={rating}
+              description={comment}
+              author={author.name || "Anonymous"}
+              isDark={isDark}
+            />
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

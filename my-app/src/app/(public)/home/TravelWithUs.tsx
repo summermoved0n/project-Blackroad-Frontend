@@ -1,10 +1,12 @@
 import Carousel from "@/components/Carousel";
-import { travelWithUsTours } from "@/lib/data/homePageData";
+import { dbFindPopularTours } from "@/lib/repositories/tour.repo";
 
-export default function TravelWithUs() {
+export default async function TravelWithUs() {
+  const popularTours = await dbFindPopularTours();
+
   return (
     <>
-      <Carousel tours={travelWithUsTours} componentTitle="travel with us" />
+      <Carousel tours={popularTours} componentTitle="travel with us" />
     </>
   );
 }

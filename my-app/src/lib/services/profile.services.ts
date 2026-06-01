@@ -1,6 +1,9 @@
 import { BookingStatus } from "../../../generated/prisma/client";
 import { dbFindUser } from "../repositories/auth.repo";
-import { dbFindBookingById } from "../repositories/booking.repo";
+import {
+  dbFindBookingByFilter,
+  dbFindBookingById,
+} from "../repositories/booking.repo";
 import { dbCancelBooking, dbCreateReview } from "../repositories/profile.repo";
 import { dbFindTour } from "../repositories/tour.repo";
 import { getCurrentUser } from "../utility/getCurrentUser";
@@ -32,6 +35,17 @@ export const leaveReview = async ({
 
   if (!tour) {
     throw new Error("Tour not found");
+  }
+
+  const isAbelToLeaveReview = await dbFindBookingByFilter({
+    userId: user.id,
+    tourId: tour.id,
+  });
+
+  if (isAbelToLeaveReview?.status !== BookingStatus.completed) {
+    throw new Error(
+      "You are not allowed to review this tour because you haven't completed it yet.",
+    );
   }
 
   await dbCreateReview({

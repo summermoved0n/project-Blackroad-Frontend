@@ -1,3 +1,4 @@
+import { dbFindPopularReview } from "@/lib/repositories/profile.repo";
 import ExploreWithUs from "./(public)/home/ExploreWithUs";
 import FAQ from "./(public)/home/FAQ";
 import FeelComfort from "./(public)/home/FeelComfort";
@@ -8,7 +9,9 @@ import Reviews from "./(public)/home/Reviews";
 import TravelWithUs from "./(public)/home/TravelWithUs";
 import WhyChooseUs from "./(public)/home/WhyChooseUs";
 
-export default function Home() {
+export default async function Home() {
+  const tourReviews = await dbFindPopularReview();
+  console.log("tourReviews", tourReviews);
   return (
     <main>
       <HomeHero />
@@ -17,7 +20,7 @@ export default function Home() {
       <TravelWithUs />
       <FeelComfort />
       <PopularTours />
-      <Reviews />
+      <Reviews tourReviews={tourReviews} />
       <KeepInTouch />
       <FAQ />
     </main>

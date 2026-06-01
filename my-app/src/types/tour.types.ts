@@ -23,3 +23,15 @@ export type PopularToursProps = {
   imageUrl: string;
   price: number;
 };
+
+export type TourReviewsPayload = {
+  id: number;
+  rating: number;
+  comment: string;
+  instagram: string | null;
+  tourId: number;
+  author: {
+    id: number;
+    name: string | null;
+  };
+};

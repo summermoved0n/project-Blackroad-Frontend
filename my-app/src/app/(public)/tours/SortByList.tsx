@@ -28,7 +28,12 @@ export default function SortByList({
       }}
       className="text-left"
     >
-      <Text as="p" color="white60" size="sm">
+      <Text
+        as="p"
+        color="white60"
+        size="sm"
+        className="hover:text-orange-300 transition"
+      >
         {label}
       </Text>
     </button>

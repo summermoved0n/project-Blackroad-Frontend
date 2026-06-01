@@ -17,7 +17,7 @@ export default function ToursListItem({ itemData }: ToursListItemProps) {
     itemData;
 
   return (
-    <li key={id} id={id.toString()} className="w-full h-fit bg-[#171717]">
+    <li className="w-full h-fit bg-[#171717]">
       <div className="relative w-full h-100">
         <Text
           as="p"
@@ -33,7 +33,7 @@ export default function ToursListItem({ itemData }: ToursListItemProps) {
         </Text>
         <button
           type="button"
-          className="absolute h-10 w-10 bg-black/40 flex justify-center items-center rounded-full top-5 right-5 z-10"
+          className="absolute h-10 w-10 bg-black/40 flex justify-center items-center rounded-full top-5 right-5 z-10 pt-1"
         >
           <EmptyHeartIcon />
         </button>
@@ -46,7 +46,7 @@ export default function ToursListItem({ itemData }: ToursListItemProps) {
         />
       </div>
       <div className="px-5 py-5 flex flex-col gap-7.5">
-        <Text as="p" color="white" size="md" className="">
+        <Text as="p" color="white" size="md" className="h-16.5 line-clamp-2">
           {title}
         </Text>
         <div className="flex justify-between items-center">
@@ -55,7 +55,7 @@ export default function ToursListItem({ itemData }: ToursListItemProps) {
             {rating}
           </Text>
         </div>
-        <Text as="p" color="white60" size="sm" className="">
+        <Text as="p" color="white60" size="sm" className="line-clamp-4">
           {description}
         </Text>
         <div className="flex justify-between items-center">

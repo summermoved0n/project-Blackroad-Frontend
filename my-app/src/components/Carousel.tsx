@@ -64,7 +64,7 @@ export default function Carousel({ tours, componentTitle }: CarouselProps) {
                 carouselClassName="flex-[0_0_100%] xl:flex-[0_0_49%] min-w-0"
                 title={title}
                 description={description}
-                image={imageUrl}
+                imageUrl={imageUrl}
                 price={price}
               />
             ))}

@@ -42,3 +42,4 @@ export * from "./ShowPasswordIcon";
 export * from "./SuccessIcon";
 export * from "./VisaIcon";
 export * from "./WiFiIcon";
+export * from "./UserIcon";

@@ -16,9 +16,9 @@ export async function POST(req: Request) {
       { status: 200 },
     );
   } catch (error) {
-    return NextResponse.json(
-      { message: "Failed to submit review", error: String(error) },
-      { status: 500 },
-    );
+    if (error instanceof Error) {
+      return NextResponse.json({ message: error.message }, { status: 404 });
+    }
+    return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 }
