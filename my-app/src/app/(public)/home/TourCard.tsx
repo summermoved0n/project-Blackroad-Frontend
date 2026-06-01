@@ -22,7 +22,6 @@ export default function TourCard({
 }: TourCardProps) {
   return (
     <div
-      id={id.toString()}
       className={clsx(
         carouselClassName,
         "relative bg-black/30 h-187.5 p-10 flex items-end w-full",
@@ -46,7 +45,7 @@ export default function TourCard({
 
         <div className="flex justify-between">
           <ButtonWithArrow
-            path={`tours/${id}/booking`}
+            path={`tours/${id}`}
             className="text-white"
             whiteArrow
           >

@@ -6,3 +6,20 @@ export const dbFindTour = async (filter: TourWhereUniqueInput) => {
     where: filter,
   });
 };
+
+export const dbFindPopularTours = async () => {
+  return prisma.tour.findMany({
+    where: {
+      rating: {
+        gte: 4.5,
+      },
+    },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      imageUrl: true,
+      price: true,
+    },
+  });
+};

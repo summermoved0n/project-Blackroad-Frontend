@@ -25,7 +25,7 @@ export default function BookingHistoryList({
       <ul className="flex flex-col gap-10">
         {tourList.map(({ id, totalPrice, tour, status }) => (
           <BookingHistoryItem
-            key={tour.id}
+            key={id}
             userId={userId}
             bookingId={id}
             userReviews={userReviews}

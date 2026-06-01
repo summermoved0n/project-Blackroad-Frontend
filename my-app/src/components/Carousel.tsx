@@ -9,16 +9,11 @@ import { Text } from "./Text";
 import { useEffect, useState } from "react";
 import { CarouselDotIcon } from "@/components/icons/CarouselDotIcon";
 import TourCard from "@/app/(public)/home/TourCard";
+import { PopularToursProps } from "@/types/tour.types";
 
 type CarouselProps = {
   componentTitle: string;
-  tours: {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-    price: number;
-  }[];
+  tours: PopularToursProps[];
 };
 
 export default function Carousel({ tours, componentTitle }: CarouselProps) {
@@ -62,14 +57,14 @@ export default function Carousel({ tours, componentTitle }: CarouselProps) {
       <div>
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex gap-5 touch-pan-y touch-pinch-zoom">
-            {tours.map(({ id, title, description, image, price }) => (
+            {tours.map(({ id, title, description, imageUrl, price }) => (
               <TourCard
                 key={id}
                 id={id}
                 carouselClassName="flex-[0_0_100%] xl:flex-[0_0_49%] min-w-0"
                 title={title}
                 description={description}
-                image={image}
+                image={imageUrl}
                 price={price}
               />
             ))}
@@ -78,7 +73,7 @@ export default function Carousel({ tours, componentTitle }: CarouselProps) {
 
         <div className="flex items-center justify-center mt-4 gap-2.5 md:hidden">
           {scrollSnaps.map((_, index) => (
-            <button className="" key={index} onClick={() => goTo(index)}>
+            <button key={index} onClick={() => goTo(index)}>
               {selectedSnap === index ? (
                 <CarouselDotIcon color="1" />
               ) : (

@@ -5,7 +5,6 @@ import clsx from "clsx";
 
 type ReviewsItemProps = {
   stars: number;
-
   description: string;
   author: string;
   isDark?: boolean;

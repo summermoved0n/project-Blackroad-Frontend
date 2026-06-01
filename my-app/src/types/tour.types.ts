@@ -15,3 +15,11 @@ export type TourPayload = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type PopularToursProps = {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  price: number;
+};
