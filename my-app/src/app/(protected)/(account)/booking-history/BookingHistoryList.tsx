@@ -7,14 +7,14 @@ import {
 
 type BookingHistoryListProps = {
   userId: number;
-  tourList: TourListHistoryPayload[];
+  bookingHistoryList: TourListHistoryPayload[];
   userReviews: UserReviewPayload[];
 };
 
 export default function BookingHistoryList({
   userReviews,
   userId,
-  tourList,
+  bookingHistoryList,
 }: BookingHistoryListProps) {
   return (
     <section className="p-15 bg-[#171717]">
@@ -23,7 +23,7 @@ export default function BookingHistoryList({
       </Text>
 
       <ul className="flex flex-col gap-10">
-        {tourList.map(({ id, totalPrice, tour, status }) => (
+        {bookingHistoryList.map(({ id, totalPrice, tour, status }) => (
           <BookingHistoryItem
             key={id}
             userId={userId}

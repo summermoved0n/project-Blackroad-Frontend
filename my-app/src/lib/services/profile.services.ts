@@ -11,13 +11,13 @@ import { getCurrentUser } from "../utility/getCurrentUser";
 type LeaveReviewProps = {
   review: string;
   rating: number;
-  tourId: number;
+  bookingId: number;
 };
 
 export const leaveReview = async ({
   review,
   rating,
-  tourId,
+  bookingId,
 }: LeaveReviewProps) => {
   const userId = await getCurrentUser();
 
@@ -31,18 +31,19 @@ export const leaveReview = async ({
     throw new Error("Unauthorized");
   }
 
-  const tour = await dbFindTour({ id: tourId });
+  const booking = await dbFindBookingById(bookingId);
+
+  if (!booking) {
+    throw new Error("Booking not found");
+  }
+
+  const tour = await dbFindTour({ id: booking.tourId });
 
   if (!tour) {
     throw new Error("Tour not found");
   }
 
-  const isAbelToLeaveReview = await dbFindBookingByFilter({
-    userId: user.id,
-    tourId: tour.id,
-  });
-
-  if (isAbelToLeaveReview?.status !== BookingStatus.completed) {
+  if (booking.status !== BookingStatus.completed) {
     throw new Error(
       "You are not allowed to review this tour because you haven't completed it yet.",
     );

@@ -2,21 +2,17 @@
 
 import { MenuDotIcon } from "@/components/icons/MenuDotIcon";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { UserReviewPayload } from "@/types/profile.types";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
+import { BookingStatus } from "../../../../../generated/prisma/client";
 
 type DotButtonMenuProps = {
   userId: number;
   tourId: number;
+  status: BookingStatus;
   setMenuItem: React.Dispatch<React.SetStateAction<string | null>>;
-  userReviews: {
-    tourId: number;
-    id: number;
-    rating: number;
-    comment: string;
-    instagram: string | null;
-    authorId: number;
-  }[];
+  userReviews: UserReviewPayload[];
 };
 
 export enum MenuItem {
@@ -29,6 +25,7 @@ export default function DotButtonMenu({
   userReviews,
   userId,
   tourId,
+  status,
   setMenuItem,
 }: DotButtonMenuProps) {
   const router = useRouter();
@@ -37,9 +34,16 @@ export default function DotButtonMenu({
   const containerRef = useRef<HTMLDivElement>(null);
   useClickOutside(containerRef, () => setShowMenu(false));
 
-  const isDisabledReviewBtn = userReviews.some(
-    (review) => review.tourId === tourId && review.authorId === userId,
-  );
+  const isDisabledReviewBtn = () => {
+    const isUserAndTourMatch = userReviews.some(
+      (review) => review.tourId === tourId && review.author.id === userId,
+    );
+
+    const isStatusComplited = status !== "completed";
+    return isUserAndTourMatch || isStatusComplited;
+  };
+
+  console.log(`isDisabledReviewBtn ${tourId}`, isDisabledReviewBtn());
 
   return (
     <div ref={containerRef} className="relative w-8">
@@ -69,7 +73,7 @@ export default function DotButtonMenu({
           <button
             className="px-4 py-2 hover:bg-gray-200 disabled:text-gray-400"
             type="button"
-            disabled={isDisabledReviewBtn}
+            disabled={isDisabledReviewBtn()}
             onClick={() => {
               setMenuItem(MenuItem.LeaveReview);
               setShowMenu(false);

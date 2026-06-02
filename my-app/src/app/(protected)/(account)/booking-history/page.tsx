@@ -11,17 +11,17 @@ export default async function page() {
   }
 
   const userBookingHistory = await dbFindAllUserBookings({ userId });
-  console.log(userBookingHistory);
+  console.log("booking history", userBookingHistory);
 
   const findReview = await dbFindReview({ authorId: userId });
-  console.log(findReview);
+  console.log("find review", findReview);
 
   return (
     <main className="text-white">
       <BookingHistoryList
         userId={userId}
         userReviews={findReview}
-        tourList={userBookingHistory}
+        bookingHistoryList={userBookingHistory}
       />
     </main>
   );

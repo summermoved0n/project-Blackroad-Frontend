@@ -2,12 +2,15 @@ import { BookingStatus } from "../../generated/prisma/enums";
 import { Decimal } from "../../generated/prisma/internal/prismaNamespace";
 
 export type UserReviewPayload = {
-  tourId: number;
   id: number;
+  tourId: number;
   rating: number;
   comment: string;
   instagram: string | null;
-  authorId: number;
+  author: {
+    id: number;
+    name: string | null;
+  };
 };
 
 export type TourListHistoryPayload = {

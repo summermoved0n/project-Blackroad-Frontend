@@ -11,11 +11,14 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 
 type LeaveReviewProps = {
-  tourId: number;
+  bookingId: number;
   setMenuItem: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-export default function LeaveReview({ tourId, setMenuItem }: LeaveReviewProps) {
+export default function LeaveReview({
+  bookingId,
+  setMenuItem,
+}: LeaveReviewProps) {
   const router = useRouter();
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
@@ -24,7 +27,7 @@ export default function LeaveReview({ tourId, setMenuItem }: LeaveReviewProps) {
     try {
       e.preventDefault();
       const payload = {
-        tourId,
+        bookingId,
         review,
         rating,
       };

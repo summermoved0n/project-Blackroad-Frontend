@@ -89,6 +89,7 @@ export default function BookingHistoryItem({
             <DotButtonMenu
               userId={userId}
               tourId={tour.id}
+              status={status}
               userReviews={userReviews}
               setMenuItem={setMenuItem}
             />
@@ -99,7 +100,7 @@ export default function BookingHistoryItem({
       {menuItem === MenuItem.LeaveReview && (
         <LeaveReview
           key={MenuItem.LeaveReview}
-          tourId={tour.id}
+          bookingId={bookingId}
           setMenuItem={setMenuItem}
         />
       )}
