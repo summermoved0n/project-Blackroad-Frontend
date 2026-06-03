@@ -1,19 +1,18 @@
 "use client";
 
+import { useFilters } from "@/hooks/useFilters";
+import { FilterField } from "@/types/filter.types";
 import { Dispatch, SetStateAction, useState } from "react";
 import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 
 type DatePickerProps = {
-  setPickDate: Dispatch<SetStateAction<DateRange | undefined>>;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 };
 
-export default function DatePicker({
-  setPickDate,
-  setShowModal,
-}: DatePickerProps) {
+export default function DatePicker({ setShowModal }: DatePickerProps) {
   const [selected, setSelected] = useState<DateRange | undefined>();
+  const { setFilter } = useFilters();
 
   return (
     <DayPicker
@@ -40,8 +39,11 @@ export default function DatePicker({
           <button
             type="button"
             onClick={() => {
-              setPickDate(selected);
               setShowModal(false);
+              setFilter(
+                FilterField.dates,
+                `${selected!.from?.toISOString() || ""}_${selected!.to?.toISOString() || ""}`,
+              );
             }}
           >
             Select

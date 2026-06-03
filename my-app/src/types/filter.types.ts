@@ -1,6 +1,6 @@
 export enum FilterField {
   city = "city",
-  date = "date",
+  dates = "dates",
   adults = "adults",
   children = "children",
   rooms = "rooms",

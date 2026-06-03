@@ -3,17 +3,17 @@
 import { Dispatch, SetStateAction } from "react";
 import { Text } from "./Text";
 import { ArrowDownIcon } from "@/components/icons/ArrowDownIcon";
-import { DateRange } from "react-day-picker";
+import { useFilters } from "@/hooks/useFilters";
 
 type SelectDateProps = {
-  pickDate: DateRange | undefined;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 };
 
-export default function SelectDate({
-  setShowModal,
-  pickDate,
-}: SelectDateProps) {
+export default function SelectDate({ setShowModal }: SelectDateProps) {
+  const { searchParams } = useFilters();
+  const pickDate = searchParams.get("dates")?.split("_") as
+    | [string, string]
+    | null;
   return (
     <div className="relative flex">
       <button
@@ -29,11 +29,11 @@ export default function SelectDate({
         >
           {!pickDate
             ? "Select date"
-            : `${pickDate.from?.toLocaleDateString("en-US", {
+            : `${new Date(pickDate[0]).toLocaleDateString("en-US", {
                 weekday: "short",
                 month: "short",
                 day: "numeric",
-              })} - ${pickDate.to?.toLocaleDateString("en-US", {
+              })} - ${new Date(pickDate[1]).toLocaleDateString("en-US", {
                 weekday: "short",
                 month: "short",
                 day: "numeric",

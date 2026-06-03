@@ -1,27 +1,31 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useFilters } from "@/hooks/useFilters";
 import { Text } from "./Text";
 import { ArrowDownIcon } from "@/components/icons/ArrowDownIcon";
 import SelectPeopleAndRoomsItem from "./SelectPeopleAndRoomsItem";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { FilterField } from "@/types/filter.types";
 
 export default function SelectPeopleAndRooms() {
-  const [adults, setAdulst] = useState(2);
-  const [children, setChildren] = useState(0);
-  const [rooms, setRooms] = useState(1);
+  const { searchParams } = useFilters();
 
-  const [showOpasityModal, setShowOpasityModal] = useState(false);
+  const adults = searchParams.get(FilterField.adults) || "2";
+  const children = searchParams.get(FilterField.children) || "0";
+  const rooms = searchParams.get(FilterField.rooms) || "1";
+
+  const [showModal, setShowModal] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  useClickOutside(containerRef, () => setShowOpasityModal(false));
+  useClickOutside(containerRef, () => setShowModal(false));
 
   return (
     <div ref={containerRef} className="relative flex">
       <button
         type="button"
         className="w-full"
-        onClick={() => setShowOpasityModal(!showOpasityModal)}
+        onClick={() => setShowModal(!showModal)}
       >
         <Text
           as="p"
@@ -34,22 +38,19 @@ export default function SelectPeopleAndRooms() {
         </Text>
       </button>
 
-      {showOpasityModal && (
+      {showModal && (
         <div className="absolute top-full w-full px-2.5 py-2.5 xl:px-7.5 xl:py-7.5 flex flex-col gap-5 bg-white z-20">
           <SelectPeopleAndRoomsItem
-            title={"Adults"}
-            quantity={adults}
-            setQuantity={setAdulst}
+            title={FilterField.adults}
+            currentValue={adults}
           />
           <SelectPeopleAndRoomsItem
-            title={"Children"}
-            quantity={children}
-            setQuantity={setChildren}
+            title={FilterField.children}
+            currentValue={children}
           />
           <SelectPeopleAndRoomsItem
-            title={"Rooms"}
-            quantity={rooms}
-            setQuantity={setRooms}
+            title={FilterField.rooms}
+            currentValue={rooms}
           />
         </div>
       )}

@@ -42,12 +42,7 @@ export default function ToursSearchForm({ toursListData }: ToursListProps) {
 
       <div className="py-5 px-4 md:py-25 md:px-20">
         <div className="hidden xl:block bg-[#171717] rounded-xl md:mb-25">
-          <SearchForm
-            pickDate={pickDate}
-            setPickDate={setPickDate}
-            showModal={showModal}
-            setShowModal={setShowModal}
-          />
+          <SearchForm showModal={showModal} setShowModal={setShowModal} />
         </div>
 
         <SortBy />

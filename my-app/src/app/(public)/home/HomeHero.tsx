@@ -6,10 +6,8 @@ import { Text } from "@/components/Text";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { DateRange } from "react-day-picker";
 
 export default function HomeHero() {
-  const [pickDate, setPickDate] = useState<DateRange | undefined>();
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
@@ -43,12 +41,7 @@ export default function HomeHero() {
         Book
       </Button>
 
-      <SearchForm
-        pickDate={pickDate}
-        setPickDate={setPickDate}
-        showModal={showModal}
-        setShowModal={setShowModal}
-      />
+      <SearchForm showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
 }
