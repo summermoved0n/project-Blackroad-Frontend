@@ -6,13 +6,13 @@ import Checkbox from "./Checkbox";
 import { useFilters } from "@/hooks/useFilters";
 
 export default function Filter() {
-  const { toggleFilter, searchParams, clearFilter } = useFilters();
+  const { toggleFilter, setFilter, searchParams, clearFilter } = useFilters();
 
   const getSelected = (key: string) => searchParams.get(key)?.split(",") || [];
 
   const selectedType = getSelected("type");
-  const selectedTours = getSelected("tours");
-  const selectedCategories = getSelected("categories");
+  const selectedTours = getSelected("tourType");
+  const selectedCategories = getSelected("category");
   const selectedRating = getSelected("rating");
 
   return (
@@ -58,12 +58,12 @@ export default function Filter() {
 
         <Checkbox
           checked={selectedTours.includes("individual")}
-          onChange={() => toggleFilter("tours", "individual")}
+          onChange={() => toggleFilter("tourType", "individual")}
           label="Individual"
         />
         <Checkbox
           checked={selectedTours.includes("group")}
-          onChange={() => toggleFilter("tours", "group")}
+          onChange={() => toggleFilter("tourType", "group")}
           label="Group"
         />
       </div>
@@ -74,13 +74,13 @@ export default function Filter() {
         </Text>
 
         <Checkbox
-          checked={selectedCategories.includes("mountains")}
-          onChange={() => toggleFilter("categories", "mountains")}
+          checked={selectedCategories.includes("Mountains")}
+          onChange={() => toggleFilter("category", "Mountains")}
           label="Mountains"
         />
         <Checkbox
-          checked={selectedCategories.includes("lakes")}
-          onChange={() => toggleFilter("categories", "lakes")}
+          checked={selectedCategories.includes("Lakes")}
+          onChange={() => toggleFilter("category", "Lakes")}
           label="Lakes"
         />
       </div>
@@ -91,28 +91,28 @@ export default function Filter() {
         </Text>
 
         <Checkbox
-          checked={selectedRating.includes("1-star")}
-          onChange={() => toggleFilter("rating", "1-star")}
+          checked={selectedRating.includes("1")}
+          onChange={() => setFilter("rating", "1")}
           label="1 star"
         />
         <Checkbox
-          checked={selectedRating.includes("2-stars")}
-          onChange={() => toggleFilter("rating", "2-stars")}
+          checked={selectedRating.includes("2")}
+          onChange={() => setFilter("rating", "2")}
           label="2 stars"
         />
         <Checkbox
-          checked={selectedRating.includes("3-stars")}
-          onChange={() => toggleFilter("rating", "3-stars")}
+          checked={selectedRating.includes("3")}
+          onChange={() => setFilter("rating", "3")}
           label="3 stars"
         />
         <Checkbox
-          checked={selectedRating.includes("4-stars")}
-          onChange={() => toggleFilter("rating", "4-stars")}
+          checked={selectedRating.includes("4")}
+          onChange={() => setFilter("rating", "4")}
           label="4 stars"
         />
         <Checkbox
-          checked={selectedRating.includes("5-stars")}
-          onChange={() => toggleFilter("rating", "5-stars")}
+          checked={selectedRating.includes("5")}
+          onChange={() => setFilter("rating", "5")}
           label="5 stars"
         />
       </div>

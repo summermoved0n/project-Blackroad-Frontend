@@ -55,7 +55,7 @@ export default function ToursListItem({ itemData }: ToursListItemProps) {
             {rating}
           </Text>
         </div>
-        <Text as="p" color="white60" size="sm" className="line-clamp-4">
+        <Text as="p" color="white60" size="sm" className="h-25 line-clamp-4">
           {description}
         </Text>
         <div className="flex justify-between items-center">

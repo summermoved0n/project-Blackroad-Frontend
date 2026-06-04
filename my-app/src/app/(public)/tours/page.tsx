@@ -1,9 +1,22 @@
 import ToursSearchForm from "./ToursSearchForm";
 import ToursHero from "./ToursHero";
-import { prisma } from "@/lib/prisma";
+import { dbFindFilteredTours } from "@/lib/repositories/tour.repo";
 
-export default async function page() {
-  const toursList = await prisma.tour.findMany();
+export default async function page({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    city?: string;
+    dates?: string;
+    adults?: string;
+    children?: string;
+    rooms?: string;
+    rating?: string;
+  }>;
+}) {
+  const params = await searchParams;
+  console.log(params);
+  const toursList = await dbFindFilteredTours(params);
 
   return (
     <main>
