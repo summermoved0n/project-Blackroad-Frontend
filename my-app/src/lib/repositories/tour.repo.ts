@@ -11,6 +11,7 @@ type TourFilterProps = {
   rating?: string;
   category?: string;
   sort?: string;
+  price?: string;
 };
 
 export const dbFindTour = async (filter: TourWhereUniqueInput) => {
@@ -52,10 +53,32 @@ export const dbFindFilteredTours = async (filter: TourFilterProps) => {
     };
   }
 
+  if (filter.dates) {
+    const [from, to] = filter.dates.split("_");
+    where.AND = [
+      {
+        dateOfArrival: {
+          lte: new Date(to),
+        },
+      },
+      {
+        dateOfDeparture: {
+          gte: new Date(from),
+        },
+      },
+    ];
+  }
+
+  if (filter.price) {
+    const [min, max] = filter.price.split("_");
+    where.price = {
+      gte: Number(min),
+      lte: Number(max),
+    };
+  }
+
   if (!filter.sort || filter.sort === "default") {
-    return prisma.tour.findMany({
-      where: {},
-    });
+    orderBy.id = "asc";
   } else if (filter.sort === "price: Low to High") {
     orderBy.price = "asc";
   } else if (filter.sort === "price: High to Low") {
@@ -65,7 +88,7 @@ export const dbFindFilteredTours = async (filter: TourFilterProps) => {
   } else if (filter.sort === "popularity") {
     orderBy.rating = "desc";
   }
-
+  // console.log("where", where);
   return prisma.tour.findMany({
     where,
     orderBy,

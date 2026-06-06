@@ -8,15 +8,16 @@ export default async function page({
   searchParams: Promise<{
     city?: string;
     dates?: string;
-    adults?: string;
-    children?: string;
-    rooms?: string;
     rating?: string;
+    price?: string;
+    sort?: string;
+    category?: string;
   }>;
 }) {
   const params = await searchParams;
-  console.log(params);
+  // console.log(params);
   const toursList = await dbFindFilteredTours(params);
+  // console.log("toursList", toursList);
 
   return (
     <main>

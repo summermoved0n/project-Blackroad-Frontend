@@ -11,13 +11,13 @@ const italiana = Italiana({
 });
 
 type LogoProps = {
-  onClose: Dispatch<SetStateAction<boolean>>;
+  onClose?: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function Logo({ onClose }: LogoProps) {
   return (
     <Link
-      onClick={() => onClose(false)}
+      onClick={() => onClose && onClose(false)}
       href="/"
       className={`text-2xl sm:text-5xl ${italiana.className}`}
     >

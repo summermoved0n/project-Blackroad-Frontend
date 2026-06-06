@@ -2,12 +2,14 @@
 
 import { Range, getTrackBackground } from "react-range";
 import { useState } from "react";
+import { useFilters } from "@/hooks/useFilters";
 
-const MIN = 100;
-const MAX = 1100;
+const MIN = 0;
+const MAX = 11000;
 
 export default function DualRange() {
   const [values, setValues] = useState([250, 750]);
+  const { setFilter } = useFilters();
 
   return (
     <div className="w-full">
@@ -20,7 +22,12 @@ export default function DualRange() {
         step={10}
         min={MIN}
         max={MAX}
-        onChange={(vals) => setValues(vals)}
+        onChange={(vals) => {
+          setValues(vals);
+        }}
+        onFinalChange={(vals) => {
+          setFilter("price", `${vals[0]}_${vals[1]}`);
+        }}
         renderTrack={({ props, children }) => (
           <div
             {...props}

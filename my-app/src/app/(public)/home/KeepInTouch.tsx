@@ -1,4 +1,4 @@
-import { Button } from "@/components/Button";
+import SubscribeField from "@/components/SubscribeField";
 import { Text } from "@/components/Text";
 import Image from "next/image";
 
@@ -14,16 +14,7 @@ export default function KeepInTouch() {
         news.
       </Text>
 
-      <div className="flex flex-col w-full w-200 md:flex-row md:justify-center gap-7.5 md:gap-2.5">
-        <input
-          type="email"
-          placeholder="Enter email"
-          className="h-12.5 md:w-181.5 px-5 py-3.5 border border-white/10 text-white focus:border-[#ea9c3f] focus:outline-none"
-        />
-        <Button variant="primary" size="sm">
-          Subscribe
-        </Button>
-      </div>
+      <SubscribeField isKeepInTouch />
 
       <Image
         src="/images/Keep_in_touch.jpg"

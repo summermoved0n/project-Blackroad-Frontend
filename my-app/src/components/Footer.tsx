@@ -3,10 +3,10 @@ import { Text } from "./Text";
 import { InstagramIcon } from "@/components/icons/InstagramIcon";
 import { FaceBookIcon } from "@/components/icons/FaceBookIcon";
 import Link from "next/link";
-import { Button } from "./Button";
 import { MastercardIcon } from "@/components/icons/MastercardIcon";
 import { VisaIcon } from "@/components/icons/VisaIcon";
 import clsx from "clsx";
+import SubscribeField from "./SubscribeField";
 
 const navigationLinks = [
   { name: "Tours", path: "tours" },
@@ -59,17 +59,7 @@ export default function Footer() {
           Subscribe to our news:
         </Text>
 
-        <div className="flex flex-col md:flex-row gap-5 md:gap-2.5 mb-12.5">
-          <input
-            type="email"
-            placeholder="Enter email"
-            className="w-full h-[50px] px-4 text-sm text-white placeholder-white/50 bg-transparent border-b border-white/10 focus:outline-none focus:border-b-orange-500"
-          />
-
-          <Button variant="primary" size="sm">
-            Subscribe
-          </Button>
-        </div>
+        <SubscribeField />
 
         <div className="flex gap-5">
           <MastercardIcon />

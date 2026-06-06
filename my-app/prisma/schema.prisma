@@ -32,6 +32,19 @@ enum PaymentProvider {
   stripe
   paypal
 }
+enum PropertyType {
+  hotels
+  cottages
+  chalet
+}
+enum Categories {
+  mountains
+  lakes
+}
+enum ToursType {
+  individual
+  group
+}
 
 model User { 
   id        Int     @id @default(autoincrement()) 
@@ -40,6 +53,7 @@ model User {
   name      String?
   phoneNumber String?
   dateOfBirth DateTime? @db.Date
+  subscribe  Boolean @default(false)
   
   isVerify  Boolean @default(false)
   verificationToken  String @unique
@@ -61,9 +75,11 @@ model Tour {
   title               String
   description         String
   imageUrl            String
-  category            String
+  category            Categories
   rating              Float
   price               Int
+  propertyType        PropertyType
+  toursType           ToursType
 
   route               String[]
   tourDates           DateTime[]

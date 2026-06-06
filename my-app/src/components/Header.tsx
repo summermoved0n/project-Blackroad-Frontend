@@ -33,7 +33,7 @@ export default function Header({ isAuth }: HeaderProps) {
   return (
     <header
       className={clsx(
-        "text-white border-b border-white/10 h-17 sm:h-20 w-full px-4 md:pl-17.5 md:px-0 transition flex items-center justify-between absolute top-0 left-0 z-10",
+        "text-white border-b border-white/10 h-17 sm:h-20 w-full px-4  md:px-0 transition flex items-center justify-between absolute top-0 left-0 z-10",
         openDropMenu
           ? "bg-[#171717] transition backdrop-blur-none"
           : " backdrop-blur-md",
@@ -47,9 +47,13 @@ export default function Header({ isAuth }: HeaderProps) {
       >
         <Navigation setOpenDropMenu={setOpenDropMenu} />
       </div>
-      <div className="w-10">
+      <div className="md:h-full md:w-50 md:flex md:items-center md:justify-center">
         {!openDropMenu ? (
-          <button type="button" onClick={() => setOpenDropMenu(true)}>
+          <button
+            className="md:h-full md:w-20 flex items-center justify-center"
+            type="button"
+            onClick={() => setOpenDropMenu(true)}
+          >
             <MenuBurgerIcon />
           </button>
         ) : (
@@ -58,26 +62,32 @@ export default function Header({ isAuth }: HeaderProps) {
           </button>
         )}
       </div>
-      <p className="hidden md:block">Fr / En</p>
+      <button
+        type="button"
+        className="hidden md:h-full md:w-30 md:flex md:items-center md:justify-center"
+      >
+        Fr / En
+      </button>
       <Logo onClose={setOpenDropMenu} />
       {isAuth ? (
         <button
-          className="hover:text-orange-300 transition"
+          className="hover:text-orange-300 transition md:h-full md:w-30 md:flex md:items-center md:justify-center"
           onClick={() => router.push("/profile")}
         >
           My Profile
         </button>
       ) : (
         <button
-          className="hover:text-orange-300 transition"
+          className="hover:text-orange-300 transition md:h-full md:w-30 md:flex md:items-center md:justify-center"
           onClick={() => router.push("/login")}
         >
           Log in
         </button>
       )}
-      <Link
-        href="/build-tour"
-        className="hidden md:flex border-l border-white/10 h-20 px-17.5  items-center group"
+      <button
+        type="button"
+        className="hidden md:flex border-l border-white/10 h-full md:w-50 justify-center  items-center group"
+        onClick={() => router.push("/build-trip")}
       >
         <Text
           as="p"
@@ -87,7 +97,7 @@ export default function Header({ isAuth }: HeaderProps) {
         >
           Build trip
         </Text>
-      </Link>
+      </button>
     </header>
   );
 }

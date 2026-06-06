@@ -1,11 +1,10 @@
-import { cookies } from 'next/headers';
-import Header from './Header';
+import { cookies } from "next/headers";
+import Header from "./Header";
 
 export default async function HeaderServer() {
-    const cookieStore = await cookies();
+  const cookieStore = await cookies();
 
-    const token = cookieStore.get("token");
+  const token = cookieStore.get("token");
 
-    return <Header isAuth={!!token} />;
-  
+  return <Header isAuth={!!token} />;
 }
