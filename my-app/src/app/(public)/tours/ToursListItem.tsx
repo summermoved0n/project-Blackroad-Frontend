@@ -7,6 +7,7 @@ import { Text } from "@/components/Text";
 import ReviewStars from "@/components/ReviewStars";
 import ButtonWithArrow from "@/components/ButtonWithArrow";
 import { TourPayload } from "@/types/tour.types";
+import { capitalizeFirstLetter } from "@/lib/utility/helpers";
 
 type ToursListItemProps = {
   itemData: TourPayload;
@@ -25,11 +26,11 @@ export default function ToursListItem({ itemData }: ToursListItemProps) {
           size="md"
           className={clsx(
             "absolute px-5 py-3 top-5 left-5 rounded-md z-10",
-            category === "Mountains" && "bg-[#213e2b]",
-            category === "Lakes" && "bg-[#477292]",
+            category === "mountains" && "bg-[#213e2b]",
+            category === "lakes" && "bg-[#477292]",
           )}
         >
-          {category}
+          {capitalizeFirstLetter(category)}
         </Text>
         <button
           type="button"

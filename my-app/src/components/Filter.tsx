@@ -74,13 +74,13 @@ export default function Filter() {
         </Text>
 
         <Checkbox
-          checked={selectedCategories.includes("Mountains")}
-          onChange={() => toggleFilter("category", "Mountains")}
+          checked={selectedCategories.includes("mountains")}
+          onChange={() => toggleFilter("category", "mountains")}
           label="Mountains"
         />
         <Checkbox
-          checked={selectedCategories.includes("Lakes")}
-          onChange={() => toggleFilter("category", "Lakes")}
+          checked={selectedCategories.includes("lakes")}
+          onChange={() => toggleFilter("category", "lakes")}
           label="Lakes"
         />
       </div>

@@ -11,6 +11,9 @@ type User = {
 
 export default function ProfileInfo({ user }: User) {
   const router = useRouter();
+  const formattedDate = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "UTC",
+  }).format(user.dateOfBirth!);
 
   return (
     <div className="bg-[#171717] p-15">
@@ -33,9 +36,7 @@ export default function ProfileInfo({ user }: User) {
             Date of birth
           </Text>
           <Text as="p" color="white" size="md">
-            {user?.dateOfBirth
-              ? new Date(user.dateOfBirth).toLocaleDateString("en-US")
-              : "DD/MM/YYYY"}
+            {user?.dateOfBirth ? formattedDate : "DD/MM/YYYY"}
           </Text>
         </div>
 

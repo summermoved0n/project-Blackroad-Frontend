@@ -1,4 +1,4 @@
-import { Prisma } from "../../../generated/prisma/client";
+import { Categories, Prisma } from "../../../generated/prisma/client";
 import { TourWhereUniqueInput } from "../../../generated/prisma/models";
 import { prisma } from "../prisma";
 
@@ -47,14 +47,19 @@ export const dbFindFilteredTours = async (filter: TourFilterProps) => {
     };
   }
 
-  // if (filter.category) {
-  //   const categories = filter.category.split(",");
-  //   where.category = {
-  //     in: Array.isArray(filter.category)
-  //       ? filter.category.split(",")
-  //       : filter.category,
-  //   };
-  // }
+  if (filter.category?.trim()) {
+    const categories = filter.category
+      .split(",")
+      .filter((category): category is Categories =>
+        Object.values(Categories).includes(category as Categories),
+      );
+
+    if (categories.length) {
+      where.category = {
+        in: categories,
+      };
+    }
+  }
 
   if (filter.dates) {
     const [from, to] = filter.dates.split("_");

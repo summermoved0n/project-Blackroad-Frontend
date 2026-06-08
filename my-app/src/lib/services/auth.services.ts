@@ -10,6 +10,7 @@ import {
 import { resend } from "../resend";
 import { getCurrentUser } from "../utility/getCurrentUser";
 import { Prisma } from "../../../generated/prisma/browser";
+import { parseBirthDate } from "../utility/helpers";
 
 const { RESEND_EMAIL_FROM, BASE_URL } = process.env;
 
@@ -38,6 +39,13 @@ type UserUpdateInfoProps = {
   name?: string;
   phoneNumber?: string;
   dateOfBirth?: string;
+};
+
+type EditUserData = {
+  email?: string;
+  name?: string;
+  phoneNumber?: string;
+  dateOfBirth?: Date;
 };
 
 type VerificationTokenProps = {
@@ -202,7 +210,7 @@ export const userUpdateInfo = async ({
     throw new Error("User not found");
   }
 
-  const editData: Prisma.UserUpdateInput = {};
+  const editData: EditUserData = {};
 
   if (email) {
     editData.email = email;
@@ -214,11 +222,17 @@ export const userUpdateInfo = async ({
     editData.phoneNumber = phoneNumber;
   }
   if (dateOfBirth) {
-    editData.dateOfBirth = new Date(dateOfBirth);
+    const parsedDate = parseBirthDate(dateOfBirth);
+
+    if (!parsedDate) {
+      throw new Error("Invalid date of birth");
+    }
+
+    editData.dateOfBirth = parsedDate;
   }
 
   await dbUpdateUser({
     filter: { id: user.id },
-    data:  editData ,
+    data: editData,
   });
 };

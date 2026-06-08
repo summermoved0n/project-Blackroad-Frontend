@@ -1,4 +1,8 @@
 import { z } from "zod";
+import { parseBirthDate } from "../utility/helpers";
+
+const MIN_AGE = 16;
+const MAX_AGE = 120;
 
 export const signupValidationSchema = z
   .object({
@@ -75,12 +79,56 @@ export const editUserInfoSchema = z
       .optional(),
     dateOfBirth: z
       .string()
-      .regex(
-        /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/,
-        "Invalid date format",
-      )
-      .or(z.literal(""))
+      .trim()
+      .optional()
       .transform((value) => (value === "" ? undefined : value))
+      .refine(
+        (value) => {
+          if (!value) return true;
+
+          return /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(
+            value,
+          );
+        },
+        { message: "Invalid date format. Use DD/MM/YYYY" },
+      )
+      .refine(
+        (value) => {
+          if (!value) return true;
+
+          return parseBirthDate(value) !== null;
+        },
+        { message: "Invalid date" },
+      )
+      .refine(
+        (value) => {
+          if (!value) return true;
+
+          const date = parseBirthDate(value);
+          if (!date) return false;
+
+          const now = new Date();
+
+          const minDate = new Date(
+            Date.UTC(
+              now.getUTCFullYear() - MAX_AGE,
+              now.getUTCMonth(),
+              now.getUTCDate(),
+            ),
+          );
+
+          const maxDate = new Date(
+            Date.UTC(
+              now.getUTCFullYear() - MIN_AGE,
+              now.getUTCMonth(),
+              now.getUTCDate(),
+            ),
+          );
+
+          return date >= minDate && date <= maxDate;
+        },
+        { message: `Age must be between ${MIN_AGE} and ${MAX_AGE}` },
+      )
       .optional(),
     phoneNumber: z
       .string()
@@ -96,7 +144,7 @@ export const editUserInfoSchema = z
       message: "At least one field must be filled",
       path: ["root"],
     },
-);
+  );
 
 export type SignupSchema = z.infer<typeof signupValidationSchema>;
 export type LoginSchema = z.infer<typeof loginValidationSchema>;
