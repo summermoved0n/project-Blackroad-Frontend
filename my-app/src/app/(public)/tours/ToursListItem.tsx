@@ -6,7 +6,6 @@ import Image from "next/image";
 import { Text } from "@/components/Text";
 import ReviewStars from "@/components/ReviewStars";
 import ButtonWithArrow from "@/components/ButtonWithArrow";
-import { TourPayload } from "@/types/tour.types";
 import { capitalizeFirstLetter } from "@/lib/utility/helpers";
 import { handleApiError } from "@/lib/utility/handleApiError";
 import axios from "axios";
@@ -14,7 +13,15 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 type ToursListItemProps = {
-  itemData: TourPayload;
+  itemData: {
+    id: number;
+    category: string;
+    title: string;
+    imageUrl: string;
+    rating: number;
+    description: string;
+    price: number;
+  };
   favoriteToursList:
     | {
         id: number;
@@ -32,7 +39,6 @@ export default function ToursListItem({
   const { id, category, title, imageUrl, rating, description, price } =
     itemData;
   const favoriteTour = favoriteToursList?.find((item) => item.tourId === id);
-  console.log(favoriteTour);
 
   const onAddToFavoriteClick = async (tourId: number) => {
     try {
