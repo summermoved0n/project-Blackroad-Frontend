@@ -28,37 +28,39 @@ export const userSubscribe = async ({ email }: { email: string }) => {
 
     const newFollower = await dbCreateSubscriber({
       email: user.email,
-      token: "",
+      verificationToken: null,
       confirmed: true,
     });
 
     return newFollower;
   }
 
-  const token = nanoid();
+  const verificationToken = nanoid();
 
   await dbCreateSubscriber({
     email,
-    token,
+    verificationToken,
   });
 
   await resend.emails.send({
     from: RESEND_EMAIL_FROM!,
     to: email,
     subject: "Subscribe to Blackroad Newsletter",
-    html: `<a href="${BASE_URL}/subscribe/confirm?token=${token}" target="_blank">Click to subscribe</a>`,
+    html: `<a href="${BASE_URL}/subscribe/confirm?token=${verificationToken}" target="_blank">Click to subscribe</a>`,
   });
 };
 
 export const subscribeConfirm = async ({ token }: { token: string }) => {
-  const subscriber = await dbFindNewsletterSubscriber({ token });
+  const subscriber = await dbFindNewsletterSubscriber({
+    verificationToken: token,
+  });
 
-  if (subscriber?.token !== token) {
+  if (subscriber?.verificationToken !== token) {
     throw new Error("Wrong token or Subscriber doesn't exist");
   }
 
   await dbUpdateSubscriber(
     { id: subscriber.id },
-    { confirmed: true, token: "" },
+    { confirmed: true, verificationToken: null },
   );
 };

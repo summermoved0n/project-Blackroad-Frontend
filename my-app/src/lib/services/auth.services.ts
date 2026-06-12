@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import {
   dbCreateUser,
   dbFindUser,
+  dbFindUserByToken,
   dbUpdateUser,
   hashNewPassword,
   validatePassword,
@@ -97,7 +98,7 @@ export const logInUser = async ({ email, password }: LogInUserProps) => {
 export const userVerify = async ({
   verificationToken,
 }: VerificationTokenProps) => {
-  const user = await dbFindUser({ verificationToken });
+  const user = await dbFindUserByToken({ verificationToken });
 
   if (!user) {
     throw new Error("User not found");
@@ -105,7 +106,7 @@ export const userVerify = async ({
 
   await dbUpdateUser({
     filter: { id: user.id },
-    data: { isVerify: true, verificationToken: "" },
+    data: { isVerify: true, verificationToken: null },
   });
 };
 
@@ -179,7 +180,7 @@ export const userResetPassword = async ({
   password,
   resetToken,
 }: ResetPassProps) => {
-  const user = await dbFindUser({ resetPasswordToken: resetToken });
+  const user = await dbFindUserByToken({ resetPasswordToken: resetToken });
 
   if (!user || user.resetPasswordExpire! < new Date()) {
     throw new Error("Invalid or expired token");

@@ -4,18 +4,23 @@ import { prisma } from "../prisma";
 type CreateSubscriberProps = {
   email: string;
   confirmed?: boolean;
-  token: string;
+  verificationToken: string | null;
 };
 
 type UpdateSubscriberProps = {
   confirmed: boolean;
-  token: string;
+  verificationToken: string | null;
+};
+
+type FindSubscriberProps = {
+  email?: string;
+  verificationToken?: string;
 };
 
 export const dbFindNewsletterSubscriber = async (
-  filter: NewsletterSubscriberWhereUniqueInput,
+  filter: FindSubscriberProps,
 ) => {
-  return prisma.newsletterSubscriber.findUnique({
+  return prisma.newsletterSubscriber.findFirst({
     where: filter,
   });
 };

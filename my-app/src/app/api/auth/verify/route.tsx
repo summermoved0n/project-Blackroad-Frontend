@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     );
   } catch (error) {
     if (error instanceof Error) {
-      return NextResponse.json({ message: "Not found" }, { status: 404 });
+      return NextResponse.json({ message: error.message }, { status: 404 });
     }
 
     return NextResponse.json({ message: "Server error" }, { status: 500 });

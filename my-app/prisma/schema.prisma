@@ -55,9 +55,9 @@ model User {
   dateOfBirth DateTime? @db.Date
   
   isVerify  Boolean @default(false)
-  verificationToken  String @unique
+  verificationToken  String?
 
-  resetPasswordToken String? @unique
+  resetPasswordToken String?
   resetPasswordExpire DateTime?
 
   createdAt DateTime @default(now())
@@ -182,7 +182,7 @@ model NewsletterSubscriber {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   confirmed Boolean  @default(false)
-  token     String?  @unique
+  verificationToken     String?  
 
   @@map("newsletter_subscribers")
 }

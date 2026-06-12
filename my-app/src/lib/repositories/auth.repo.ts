@@ -17,16 +17,27 @@ type dbUpdateUserProps = {
     dateOfBirth?: Date | null;
     password?: string;
     isVerify?: boolean;
-    verificationToken?: string;
+    verificationToken?: string | null;
     resetPasswordToken?: string | null;
     resetPasswordExpire?: Date | null;
     subscribe?: boolean;
   };
 };
 
+type dbFindUserWithToken = {
+  verificationToken?: string | null;
+  resetPasswordToken?: string | null;
+};
+
 export const dbFindUser = async (filter: UserWhereUniqueInput) => {
   return prisma.user.findUnique({
     where: filter,
+  });
+};
+
+export const dbFindUserByToken = async (token: dbFindUserWithToken) => {
+  return prisma.user.findFirst({
+    where: token,
   });
 };
 

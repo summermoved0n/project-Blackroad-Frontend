@@ -1,6 +1,7 @@
 "use client";
 
 import { Text } from "@/components/Text";
+import { handleApiError } from "@/lib/utility/handleApiError";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -22,6 +23,7 @@ export default function VerifyPage() {
 
         router.replace("/login");
       } catch (error) {
+        handleApiError(error);
         setMessage("Account doesn't exist or has already verified");
       }
     };

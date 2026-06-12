@@ -20,7 +20,7 @@ export default async function page() {
         Favorite
       </Text>
 
-      <ul className="grid md:grid-cols-2 gap-4 md:gap-7.5">
+      <ul className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-7.5">
         {favoriteToursList && favoriteToursList?.length > 0 ? (
           favoriteToursList?.map(({ tour }) => (
             <ToursListItem
