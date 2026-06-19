@@ -12,13 +12,13 @@ import BookingFormUserInfo from "./BookingFormUserInfo";
 import BookingFormAddress from "./BookingFormAddress";
 import InputField from "@/components/InputField";
 import BookingFormArrivalTime from "./BookingFormArrivalTime";
-import BookingFormPayment from "./BookingFormPayment";
 import BookingFormPolicy from "./BookingFormPolicy";
 import { Button } from "@/components/Button";
 import { UserPayload } from "@/types/user.types";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { handleApiError } from "@/lib/utility/handleApiError";
+import BookingStripeForm from "./BookingStripeForm";
 
 type UserProps = {
   user: UserPayload;
@@ -28,7 +28,6 @@ export default function BookingForm({ user }: UserProps) {
   if (!user) {
     notFound();
   }
-
   const [arrivalTime, setArrivalTime] = useState("");
 
   const { id } = useParams();
@@ -75,9 +74,13 @@ export default function BookingForm({ user }: UserProps) {
           guestArrivalTime: arrivalTime === "" ? null : arrivalTime,
         },
       };
-      console.log(checkout);
 
-      const response = await axios.post("/api/booking", checkout);
+      const booking = await axios.post("/api/booking/checkout", checkout);
+      console.log(booking);
+      const response = await axios.post("/api/stripe/payment-intent", {
+        bookingId: booking.data.response.bookingId,
+        paymentId: booking.data.response.paymentId,
+      });
 
       toast.success(response.data.message);
     } catch (error) {
@@ -108,11 +111,7 @@ export default function BookingForm({ user }: UserProps) {
         arrivalTime={arrivalTime}
         setArrivalTime={setArrivalTime}
       />
-      <BookingFormPayment
-        errors={errors}
-        register={register}
-        control={control}
-      />
+      <BookingStripeForm />
       <BookingFormPolicy />
       <Button type="submit" variant="primary">
         Book and pay

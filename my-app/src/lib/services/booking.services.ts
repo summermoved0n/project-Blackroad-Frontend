@@ -1,10 +1,16 @@
-import { BookingStatus, RoomType } from "../../../generated/prisma/enums";
+import {
+  BookingStatus,
+  PaymentProvider,
+  PaymentStatus,
+  RoomType,
+} from "../../../generated/prisma/enums";
 import { dbFindUser } from "../repositories/auth.repo";
 import { dbCreateCustomer } from "../repositories/booking-customer.repo";
 import {
   dbCreateBooking,
   dbFindBookingByFilter,
 } from "../repositories/booking.repo";
+import { dbCreatePayment } from "../repositories/payment.repo";
 import { dbFindTour } from "../repositories/tour.repo";
 import { getCurrentUser } from "../utility/getCurrentUser";
 
@@ -66,7 +72,7 @@ export const createBooking = async (data: BookingDataProps) => {
 
   const { customerInfo, contactDetails, additional } = data;
 
-  console.log("Creating new Customer...");
+  // console.log("Creating new Customer...");
 
   const newCustomer = await dbCreateCustomer({
     email: customerInfo.email,
@@ -80,15 +86,26 @@ export const createBooking = async (data: BookingDataProps) => {
     guestArrivalTime: additional.guestArrivalTime ?? null,
   });
 
-  console.log("Creating new booking...");
+  // console.log("Creating new booking...");
 
-  await dbCreateBooking({
+  const booking = await dbCreateBooking({
     userId: user.id,
     tourId: tour.id,
     customerId: newCustomer.id,
     guests: 2,
     room: RoomType.single,
-    totalPrice: 2,
+    totalPrice: tour.price,
     status: BookingStatus.pending,
   });
+
+  const payment = await dbCreatePayment({
+    bookingId: booking.id,
+    provider: PaymentProvider.stripe,
+    status: PaymentStatus.pending,
+  });
+
+  return {
+    bookingId: booking.id,
+    paymentId: payment.id,
+  };
 };

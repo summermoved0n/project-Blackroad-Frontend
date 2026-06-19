@@ -12,10 +12,6 @@ import {
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-type Props = {
-  clientSecret: string;
-};
-
 const elementOptions = {
   style: {
     base: {
@@ -31,7 +27,7 @@ const elementOptions = {
   },
 };
 
-export default function PaymentForm({ clientSecret }: Props) {
+export default function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
@@ -40,11 +36,11 @@ export default function PaymentForm({ clientSecret }: Props) {
     try {
       const cardElement = elements!.getElement(CardNumberElement);
 
-      const result = await stripe!.confirmCardPayment(clientSecret, {
+      const result = await stripe!.confirmCardPayment("clientSecret", {
         payment_method: {
           card: cardElement!,
           billing_details: {
-            name: `name`,
+            name: "name",
             email: "email",
             phone: "phone",
           },
@@ -72,32 +68,28 @@ export default function PaymentForm({ clientSecret }: Props) {
 
   return (
     <div>
-      <div className="grid grid-cols-[2fr_1fr_1fr] gap-6">
+      <div className="grid grid-cols-[2fr] gap-7.5">
         <div>
-          <label>Card number</label>
+          <label className="text-white">Card number</label>
           <div className="border border-neutral-700 p-4">
             <CardNumberElement options={elementOptions} />
           </div>
         </div>
 
         <div>
-          <label>Expiration date</label>
+          <label className="text-white">Expiration date</label>
           <div className="border border-neutral-700 p-4">
             <CardExpiryElement options={elementOptions} />
           </div>
         </div>
 
         <div>
-          <label>Security code</label>
+          <label className="text-white">Security code</label>
           <div className="border border-neutral-700 p-4">
             <CardCvcElement options={elementOptions} />
           </div>
         </div>
       </div>
-
-      <Button variant="primary" size="sm" onClick={handleSubmit}>
-        Book and pay
-      </Button>
     </div>
   );
 }

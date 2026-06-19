@@ -15,10 +15,10 @@ export async function POST(req: Request) {
       );
     }
 
-    await createBooking(validatedBody.data);
+    const response = await createBooking(validatedBody.data);
 
     return NextResponse.json(
-      { message: "Your booking data was sent success" },
+      { message: "Your booking data was sent success", response },
       { status: 200 },
     );
   } catch (error) {

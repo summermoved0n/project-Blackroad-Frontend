@@ -9,7 +9,7 @@ export default function PayContainer() {
   return (
     <div>
       <PayBtn setSecret={setSecret} />
-      {secret && <PaymentElementWrapper clientSecret={secret} />}
+      {/* {secret && <PaymentElementWrapper clientSecret={secret} />} */}
     </div>
   );
 }
