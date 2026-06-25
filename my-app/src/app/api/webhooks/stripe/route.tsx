@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { stripe } from "@/lib/stripe";
 import { dbUpdateBooking } from "@/lib/repositories/booking.repo";
-import { BookingStatus } from "../../../../../generated/prisma/enums";
+import {
+  BookingStatus,
+  PaymentStatus,
+} from "../../../../../generated/prisma/enums";
+import { dbUpdatePaymentById } from "@/lib/repositories/payment.repo";
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -30,15 +34,18 @@ export async function POST(req: Request) {
   if (event.type === "payment_intent.succeeded") {
     const paymentIntent = event.data.object as Stripe.PaymentIntent;
 
-    const bookingId = paymentIntent.metadata.bookingId;
+    const { bookingId, paymentId } = paymentIntent.metadata;
 
     console.log("Payment succeeded for booking:", bookingId);
 
-    // тут потім оновимо booking
     await dbUpdateBooking(
       { id: Number(bookingId) },
       { status: BookingStatus.confirmed },
     );
+
+    await dbUpdatePaymentById(Number(paymentId), {
+      status: PaymentStatus.paid,
+    });
   }
 
   return NextResponse.json({ received: true });

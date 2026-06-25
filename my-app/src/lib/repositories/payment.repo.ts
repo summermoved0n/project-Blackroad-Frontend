@@ -11,9 +11,10 @@ type CreateProps = {
 };
 
 type UpdateDataProps = {
-  providerPaymentId: string;
-  amount: number;
-  clientSecret: string | null;
+  providerPaymentId?: string;
+  amount?: number;
+  clientSecret?: string | null;
+  status?: PaymentStatus;
 };
 
 export const dbCreatePayment = async (data: CreateProps) =>

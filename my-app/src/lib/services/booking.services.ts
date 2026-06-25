@@ -10,7 +10,7 @@ import {
   dbCreateBooking,
   dbFindBookingByFilter,
 } from "../repositories/booking.repo";
-import { dbCreatePayment } from "../repositories/payment.repo";
+import { dbCreatePayment, dbFindPayment } from "../repositories/payment.repo";
 import { dbFindTour } from "../repositories/tour.repo";
 import { getCurrentUser } from "../utility/getCurrentUser";
 
@@ -60,14 +60,30 @@ export const createBooking = async (data: BookingDataProps) => {
 
   console.log("isThisBookingExist", isThisBookingExist);
 
-  if (
-    isThisBookingExist &&
-    isThisBookingExist?.status !== BookingStatus.completed &&
-    isThisBookingExist?.status !== BookingStatus.cancelled
-  ) {
-    throw new Error(
-      "You have already made a booking tour with this email. Please check your email for details or contact support.",
-    );
+  if (isThisBookingExist?.status === BookingStatus.confirmed) {
+    throw new Error("You have already booked this tour.");
+  }
+
+  if (isThisBookingExist?.status === BookingStatus.pending) {
+    const payment = await dbFindPayment({ bookingId: isThisBookingExist.id });
+
+    if (payment?.status === PaymentStatus.pending) {
+      return {
+        bookingId: isThisBookingExist.id,
+        paymentId: payment.id,
+      };
+    }
+
+    const newPayment = await dbCreatePayment({
+      bookingId: isThisBookingExist.id,
+      provider: PaymentProvider.stripe,
+      status: PaymentStatus.pending,
+    });
+
+    return {
+      bookingId: isThisBookingExist.id,
+      paymentId: newPayment.id,
+    };
   }
 
   const { customerInfo, contactDetails, additional } = data;

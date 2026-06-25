@@ -37,7 +37,7 @@ export const createPayment = async ({ bookingId, paymentId }: CreateProps) => {
   const payment = await dbFindPaymentById(paymentId);
 
   if (
-    payment?.status !== PaymentStatus.pending &&
+    payment?.status !== PaymentStatus.pending ||
     payment?.bookingId !== booking?.id
   ) {
     throw new Error("Payment not found or wrong status");
@@ -55,7 +55,7 @@ export const finishPayment = async ({
   client_secret,
 }: FinishPaymentProps) => {
   const payment = await dbFindPaymentById(paymentId);
-  
+
   if (!payment) {
     throw new Error("Payment does not exist");
   }

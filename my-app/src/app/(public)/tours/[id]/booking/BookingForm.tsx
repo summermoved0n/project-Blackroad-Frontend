@@ -5,7 +5,7 @@ import {
   bookingInterfaceSchema,
 } from "@/lib/validations/booking.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { notFound, useParams } from "next/navigation";
+import { notFound, useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import BookingFormUserInfo from "./BookingFormUserInfo";
@@ -18,16 +18,22 @@ import { UserPayload } from "@/types/user.types";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { handleApiError } from "@/lib/utility/handleApiError";
-import BookingStripeForm from "./BookingStripeForm";
+import PaymentForm from "@/app/(public)/hotels/PaymentForm";
+import {
+  CardNumberElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
 
-type UserProps = {
-  user: UserPayload;
-};
-
-export default function BookingForm({ user }: UserProps) {
+export default function BookingForm({ user }: { user: UserPayload }) {
   if (!user) {
     notFound();
   }
+
+  const stripe = useStripe();
+  const elements = useElements();
+  const router = useRouter();
+
   const [arrivalTime, setArrivalTime] = useState("");
 
   const { id } = useParams();
@@ -76,12 +82,46 @@ export default function BookingForm({ user }: UserProps) {
       };
 
       const booking = await axios.post("/api/booking/checkout", checkout);
-      console.log("Form booking", booking);
+      // console.log("Form booking", booking);
       const response = await axios.post("/api/stripe/payment-intent", {
         bookingId: booking.data.response.bookingId,
         paymentId: booking.data.response.paymentId,
       });
-      console.log("Form response", response);
+      // console.log("Form response", response);
+
+      const cardElement = elements!.getElement(CardNumberElement);
+      console.log("card element", cardElement);
+
+      const result = await stripe!.confirmCardPayment(
+        response.data.clientSecret,
+        {
+          payment_method: {
+            card: cardElement!,
+            billing_details: {
+              name: `${data.name} ${data.surname}`,
+              email: data.email,
+              phone: data.phoneNumber,
+            },
+          },
+        },
+      );
+
+      console.log("Confirm card", result);
+
+      if (result.error) {
+        toast.error(result.error.message || "Payment failed");
+        return;
+      }
+
+      if (result.paymentIntent?.status === "succeeded") {
+        toast.success("Payment success");
+        router.replace(
+          `/payment/success?payment_intent=${result.paymentIntent.id}`,
+        );
+        return;
+      }
+
+      toast.error("Payment was not completed");
 
       // toast.success(response.data.message);
     } catch (error) {
@@ -112,7 +152,7 @@ export default function BookingForm({ user }: UserProps) {
         arrivalTime={arrivalTime}
         setArrivalTime={setArrivalTime}
       />
-      <BookingStripeForm />
+      <PaymentForm />
       <BookingFormPolicy />
       <Button type="submit" variant="primary">
         Book and pay
