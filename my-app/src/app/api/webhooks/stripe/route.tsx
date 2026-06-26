@@ -31,12 +31,12 @@ export async function POST(req: Request) {
     );
   }
 
+  console.log(event.type);
+
   if (event.type === "payment_intent.succeeded") {
     const paymentIntent = event.data.object as Stripe.PaymentIntent;
 
     const { bookingId, paymentId } = paymentIntent.metadata;
-
-    console.log("Payment succeeded for booking:", bookingId);
 
     await dbUpdateBooking(
       { id: Number(bookingId) },
@@ -45,6 +45,19 @@ export async function POST(req: Request) {
 
     await dbUpdatePaymentById(Number(paymentId), {
       status: PaymentStatus.paid,
+    });
+  } else if (event.type === "payment_intent.payment_failed") {
+    const paymentIntent = event.data.object as Stripe.PaymentIntent;
+
+    const { bookingId, paymentId } = paymentIntent.metadata;
+
+    await dbUpdateBooking(
+      { id: Number(bookingId) },
+      { status: BookingStatus.pending },
+    );
+
+    await dbUpdatePaymentById(Number(paymentId), {
+      status: PaymentStatus.failed,
     });
   }
 

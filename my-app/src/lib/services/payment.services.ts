@@ -30,6 +30,10 @@ export const createPayment = async ({ bookingId, paymentId }: CreateProps) => {
 
   const booking = await dbFindBookingById(bookingId);
 
+  if (booking?.userId !== user.id) {
+    throw new Error("Forbidden");
+  }
+
   if (booking?.status !== BookingStatus.pending) {
     throw new Error("Booking not found or wrong status");
   }

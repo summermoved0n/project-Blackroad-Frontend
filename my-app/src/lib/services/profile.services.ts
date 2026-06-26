@@ -1,9 +1,13 @@
-import { BookingStatus } from "../../../generated/prisma/client";
+import { BookingStatus, PaymentStatus } from "../../../generated/prisma/client";
 import { dbFindUser } from "../repositories/auth.repo";
 import {
   dbFindBookingByFilter,
   dbFindBookingById,
 } from "../repositories/booking.repo";
+import {
+  dbFindPayment,
+  dbUpdatePaymentById,
+} from "../repositories/payment.repo";
 import { dbCancelBooking, dbCreateReview } from "../repositories/profile.repo";
 import { dbFindTour } from "../repositories/tour.repo";
 import { getCurrentUser } from "../utility/getCurrentUser";
@@ -72,8 +76,8 @@ export const cancelBooking = async ({ bookingId }: { bookingId: number }) => {
 
   const booking = await dbFindBookingById(bookingId);
 
-  if (!booking) {
-    throw new Error("Booking not found");
+  if (booking?.userId !== user.id) {
+    throw new Error("Forbidden");
   }
 
   if (
@@ -83,5 +87,12 @@ export const cancelBooking = async ({ bookingId }: { bookingId: number }) => {
     throw new Error("Only active bookings can be canceled");
   }
 
+  const payment = await dbFindPayment({ bookingId });
+
+  if (payment?.status !== PaymentStatus.paid) {
+    throw new Error("Payment wasn't paid");
+  }
+
+  await dbUpdatePaymentById(payment.id, { status: PaymentStatus.refunded });
   await dbCancelBooking(bookingId);
 };
